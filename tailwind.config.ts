@@ -1,13 +1,17 @@
 import { fontFamily } from 'tailwindcss/defaultTheme';
 import type { Config } from 'tailwindcss';
+// const colors = require('tailwindcss/colors');
+const svelteUx = require('svelte-ux/plugins/tailwind.cjs');
 
 const config: Config = {
 	darkMode: ['class'],
 	content: [
 		'./src/**/*.{html,js,svelte,ts}',
-		'./node_modules/layerchart/**/*.{svelte,js}',
-		'./node_modules/svelte-ux/**/*.{svelte,js}'
+		'./node_modules/svelte-ux/**/*.{svelte,js}',
+		'./node_modules/layerchart/**/*.{svelte,js}'
 	],
+	plugins: [svelteUx],
+
 	safelist: ['dark'],
 	theme: {
 		container: {
