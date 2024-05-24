@@ -17,9 +17,11 @@
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-vercel": "^5.3.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@tailwindcss/typography": "^0.5.10",
+		"@types/d3-scale": "^4.0.8",
 		"@types/eslint": "^8.56.0",
 		"@typescript-eslint/eslint-plugin": "^7.0.0",
 		"@typescript-eslint/parser": "^7.0.0",
@@ -41,7 +43,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@types/d3-scale": "^4.0.8",
+		"@formkit/tempo": "^0.1.1",
 		"bits-ui": "^0.21.9",
 		"clsx": "^2.1.1",
 		"d3-array": "^3.2.4",
