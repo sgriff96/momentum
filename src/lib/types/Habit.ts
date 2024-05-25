@@ -8,4 +8,5 @@ export type Habit = {
 export type HabitData = {
 	date: Date;
 	value: number;
+	completed: boolean;
 };

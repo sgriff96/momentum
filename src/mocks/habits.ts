@@ -3,123 +3,123 @@ import type { Habit } from '$lib/types/Habit';
 const HABIT_DATA = [
 	{
 		date: new Date('2024-04-25T07:00:00.000Z'),
-		value: 1
+		completed: true
 	},
 	{
 		date: new Date('2024-04-26T07:00:00.000Z'),
-		value: 2
+		completed: true
 	},
 	{
 		date: new Date('2024-04-27T07:00:00.000Z'),
-		value: 4
+		completed: true
 	},
 	{
 		date: new Date('2024-04-28T07:00:00.000Z'),
-		value: 6
+		completed: true
 	},
 	{
 		date: new Date('2024-04-29T07:00:00.000Z'),
-		value: 7
+		completed: true
 	},
 	{
 		date: new Date('2024-04-30T07:00:00.000Z'),
-		value: 6
+		completed: true
 	},
 	{
 		date: new Date('2024-05-01T07:00:00.000Z'),
-		value: 6
+		completed: true
 	},
 	{
 		date: new Date('2024-05-02T07:00:00.000Z'),
-		value: 8
+		completed: true
 	},
 	{
 		date: new Date('2024-05-03T07:00:00.000Z'),
-		value: 10
+		completed: true
 	},
 	{
 		date: new Date('2024-05-04T07:00:00.000Z'),
-		value: 12
+		completed: true
 	},
 	{
 		date: new Date('2024-05-05T07:00:00.000Z'),
-		value: 14
+		completed: true
 	},
 	{
 		date: new Date('2024-05-06T07:00:00.000Z'),
-		value: 14
+		completed: true
 	},
 	{
 		date: new Date('2024-05-07T07:00:00.000Z'),
-		value: 14
+		completed: true
 	},
 	{
 		date: new Date('2024-05-08T07:00:00.000Z'),
-		value: 15
+		completed: true
 	},
 	{
 		date: new Date('2024-05-09T07:00:00.000Z'),
-		value: 18
+		completed: true
 	},
 	{
 		date: new Date('2024-05-10T07:00:00.000Z'),
-		value: 19
+		completed: true
 	},
 	{
 		date: new Date('2024-05-11T07:00:00.000Z'),
-		value: 20
+		completed: true
 	},
 	{
 		date: new Date('2024-05-12T07:00:00.000Z'),
-		value: 19
+		completed: true
 	},
 	{
 		date: new Date('2024-05-13T07:00:00.000Z'),
-		value: 18
+		completed: true
 	},
 	{
 		date: new Date('2024-05-14T07:00:00.000Z'),
-		value: 19
+		completed: true
 	},
 	{
 		date: new Date('2024-05-15T07:00:00.000Z'),
-		value: 20
+		completed: true
 	},
 	{
 		date: new Date('2024-05-16T07:00:00.000Z'),
-		value: 21
+		completed: true
 	},
 	{
 		date: new Date('2024-05-17T07:00:00.000Z'),
-		value: 22
+		completed: true
 	},
 	{
 		date: new Date('2024-05-18T07:00:00.000Z'),
-		value: 24
+		completed: true
 	},
 	{
 		date: new Date('2024-05-19T07:00:00.000Z'),
-		value: 26
+		completed: true
 	},
 	{
 		date: new Date('2024-05-20T07:00:00.000Z'),
-		value: 28
+		completed: true
 	},
 	{
 		date: new Date('2024-05-21T07:00:00.000Z'),
-		value: 29
+		completed: true
 	},
 	{
 		date: new Date('2024-05-22T07:00:00.000Z'),
-		value: 30
+		completed: true
 	},
 	{
 		date: new Date('2024-05-23T07:00:00.000Z'),
-		value: 33
+		completed: true
 	},
 	{
 		date: new Date('2024-05-24T07:00:00.000Z'),
-		value: 36
+		completed: true
 	}
 ];
 
