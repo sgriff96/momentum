@@ -1,13 +1,13 @@
 <script lang="ts">
-	import AreaChart from '$lib/charts/AreaChart.svelte';
+	import Habit from '$lib/components/Habit.svelte';
+	import { Button } from '$lib/components/ui/button';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-
-	const chartData = data.dateSeriesData.map((d) => ({
-		...d,
-		date: new Date(d.date)
-	}));
 </script>
 
-<AreaChart data={chartData} />
+{#each data.habits as habit (habit.id)}
+	<div class="my-2">
+		<Habit {habit} />
+	</div>
+{/each}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { format } from '@formkit/tempo';
+	import * as d3shapes from 'd3-shape';
 	import { scaleTime } from 'd3-scale';
 	import {
 		Axis,
@@ -13,9 +14,13 @@
 	} from 'layerchart';
 
 	export let data: { date: Date; value: number }[];
+
+	// https://d3js.org/d3-shape/curve
+	// https://www.layerchart.com/docs/components/Area
+	const curve = d3shapes['curveBasis'];
 </script>
 
-<div class="h-[300px] rounded border p-4">
+<div class="h-[200px]">
 	<Chart
 		{data}
 		x="date"
@@ -23,47 +28,35 @@
 		y="value"
 		yDomain={[0, null]}
 		yNice
-		padding={{ top: 48, bottom: 24 }}
 		tooltip={{ mode: 'bisect-x' }}
 		let:width
 		let:height
-		let:padding
 		let:tooltip
 	>
 		<Svg>
-			<LinearGradient class="to-cyan-0 from-cyan-500" vertical let:url>
-				<Area line={{ class: 'stroke-2 stroke-cyan-500 opacity-20' }} fill={url} />
+			<LinearGradient class="fill from-primary" vertical let:url>
+				<Area {curve} line={{ class: 'stroke-2 stroke-primary opacity-20' }} fill={url} />
 				<RectClipPath x={0} y={0} width={tooltip.data ? tooltip.x : width} {height} spring>
-					<Area line={{ class: 'stroke-2 stroke-cyan-600' }} fill={url} />
+					<Area {curve} line={{ class: 'stroke-2 stroke-primary' }} fill={url} />
 				</RectClipPath>
 			</LinearGradient>
-			<Highlight points lines={{ class: 'stroke-cyan-500 [stroke-dasharray:unset]' }} />
-			<Axis placement="bottom" />
+			<Highlight points />
+			<Axis
+				placement="bottom"
+				format={(d) => format(d, 'MM/DD')}
+				labelProps={{
+					class: 'fill-secondary-foreground'
+				}}
+			/>
 		</Svg>
 
 		<Tooltip
-			y={48}
 			xOffset={4}
 			variant="none"
-			class="text-sm font-semibold leading-3 text-primary"
+			class="text-primary-content whitespace-nowrap rounded bg-primary px-2 py-1 text-sm font-semibold leading-3 text-primary-foreground"
 			let:data
 		>
-			{data.value}
-		</Tooltip>
-
-		<Tooltip x={4} y={4} variant="none" class="text-sm font-semibold leading-3" let:data>
-			{format(data.date, 'short')}
-		</Tooltip>
-
-		<Tooltip
-			x="data"
-			y={height + padding.top + 2}
-			anchor="top"
-			variant="none"
-			class="text-primary-content whitespace-nowrap rounded bg-black px-2 py-1 text-sm font-semibold leading-3"
-			let:data
-		>
-			{format(data.date, 'short')}
+			{format(data.date, 'long')}
 		</Tooltip>
 	</Chart>
 </div>

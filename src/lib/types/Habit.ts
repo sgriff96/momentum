@@ -1,7 +1,11 @@
 export type Habit = {
 	id: string;
 	name: string;
+	data: HabitData[];
 	description?: string;
 };
 
-export type Habits = Record<string, Habit>;
+export type HabitData = {
+	date: Date;
+	value: number;
+};
