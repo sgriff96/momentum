@@ -1,4 +1,4 @@
-import type { Habit } from '$lib/types/Habit';
+import type { IHabit } from '$lib/types/Habit';
 
 const HABIT_DATA = [
 	{
@@ -123,7 +123,7 @@ const HABIT_DATA = [
 	}
 ];
 
-export const MOCK_HABITS: Habit[] = [
+export const MOCK_HABITS: IHabit[] = [
 	{
 		id: '1',
 		name: 'Exercise',

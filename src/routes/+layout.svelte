@@ -7,12 +7,26 @@
 	import { toggleMode } from 'mode-watcher';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import NavItem from '$lib/components/NavItem.svelte';
+
+	import { setContext } from 'svelte';
+	import { writable } from 'svelte/store';
+	import type { LayoutData } from './$types';
+	import type { IHabit } from '$lib/types/Habit';
+
+	export let data: LayoutData;
+
+	const habits = writable<IHabit[]>();
+	$: habits.set(data.habits);
+
+	setContext('habits', habits);
 </script>
 
 <ModeWatcher />
 
 <div class="mx-2">
-	<div class="mt-2 flex items-center justify-between rounded-md border border-border px-4 py-2">
+	<div
+		class="mb-2 mt-2 flex items-center justify-between rounded-md border border-border px-4 py-2"
+	>
 		<div class="flex gap-4">
 			<NavItem href="/">Home</NavItem>
 		</div>
