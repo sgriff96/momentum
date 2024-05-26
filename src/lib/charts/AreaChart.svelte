@@ -13,13 +13,13 @@
 		Tooltip
 	} from 'layerchart';
 	import type { HabitData } from '../types/Habit';
-	import { date } from 'svelte-ux';
 	import { MoveRight, TrendingDown, TrendingUp } from 'lucide-svelte';
 
 	export let data: HabitData[];
 
 	// https://d3js.org/d3-shape/curve
 	// https://www.layerchart.com/docs/components/Area
+	// @ts-expect-error- d3-shape types are not up to date
 	const curve = d3shapes['linear']; // curveBasis
 </script>
 
