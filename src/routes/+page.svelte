@@ -5,9 +5,8 @@
 	export let data: PageData;
 </script>
 
-<!-- 
 {#each data.habits as habit (habit.id)}
 	<div class="mb-2">
 		<Habit {habit} />
 	</div>
-{/each} -->
+{/each}
