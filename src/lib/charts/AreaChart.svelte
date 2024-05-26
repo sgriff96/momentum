@@ -12,8 +12,9 @@
 		Highlight,
 		Tooltip
 	} from 'layerchart';
+	import type { HabitData } from '$lib/types/Habit';
 
-	export let data: { date: Date; value: number }[];
+	export let data: HabitData[];
 
 	// https://d3js.org/d3-shape/curve
 	// https://www.layerchart.com/docs/components/Area

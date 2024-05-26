@@ -2,18 +2,44 @@
 	import AreaChart from '$lib/charts/AreaChart.svelte';
 	import * as Card from '$lib/components/ui/card';
 	import type { HabitData, IHabit } from '$lib/types/Habit';
+	import { diffDays } from '@formkit/tempo';
 
 	export let habit: IHabit;
 
 	console.log('habit', habit);
 
+	const getTrend = (data: HabitData[], i: number) => {
+		let trend = 0;
+		if (data[i - 1].completed === true) {
+			trend = 1;
+		}
+
+		if (data[i - 1].completed === false && data[i - 2].completed === true) {
+			trend = 0;
+		}
+
+		if (data[i - 1].completed === false && data[i - 2].completed === false) {
+			trend = -1;
+		}
+
+		return trend;
+	};
+
 	const bah = habit.data.reduce((acc: HabitData[], d, i) => {
 		let value;
+		// y = mx + b
+		// m is the trend, 1, 0 or -1
+		// b is y(n-1), the previous value (?)
+		// x is the amount of days since starting the habit
 
 		if (i === 0 && d.completed === true) {
 			value = 1;
-		} else if (d.completed === true && 'value' in acc[i - 1]) {
-			value = acc[i - 1].value! + 1;
+		} else {
+			const x = diffDays(d.date, habit.startDate);
+			const b = acc[i - 1]?.value ?? 0;
+			const m = getTrend(acc, i); // THIS ISNT RIGHT
+
+			value = m * x + b;
 		}
 
 		acc.push({
