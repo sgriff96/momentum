@@ -1,13 +1,29 @@
 import { redirect } from '@sveltejs/kit';
+import { superValidate } from 'sveltekit-superforms';
+import type { Actions, PageServerLoad } from './$types';
+import { formSchema } from './schema';
+import { zod } from 'sveltekit-superforms/adapters';
+import { fail } from '@sveltejs/kit';
 
-import type { Actions } from './$types';
+export const load: PageServerLoad = async () => {
+	return {
+		form: await superValidate(zod(formSchema))
+	};
+};
 
 export const actions: Actions = {
-	signup: async ({ request, locals: { supabase } }) => {
-		const formData = await request.formData();
-		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
+	signup: async (event) => {
+		const {
+			locals: { supabase }
+		} = event;
+		const form = await superValidate(event, zod(formSchema));
+		if (!form.valid) {
+			return fail(400, {
+				form
+			});
+		}
 
+		const { email, password } = form.data;
 		const { error } = await supabase.auth.signUp({ email, password });
 		if (error) {
 			console.error(error);
@@ -16,11 +32,18 @@ export const actions: Actions = {
 			return redirect(303, '/');
 		}
 	},
-	login: async ({ request, locals: { supabase } }) => {
-		const formData = await request.formData();
-		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
+	login: async (event) => {
+		const {
+			locals: { supabase }
+		} = event;
+		const form = await superValidate(event, zod(formSchema));
+		if (!form.valid) {
+			return fail(400, {
+				form
+			});
+		}
 
+		const { email, password } = form.data;
 		const { error } = await supabase.auth.signInWithPassword({ email, password });
 		if (error) {
 			console.error(error);

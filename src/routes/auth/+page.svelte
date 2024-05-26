@@ -1,12 +1,17 @@
-<form method="POST" action="?/login">
-	<label>
-		Email
-		<input name="email" type="email" />
-	</label>
-	<label>
-		Password
-		<input name="password" type="password" />
-	</label>
-	<button>Login</button>
-	<button formaction="?/signup">Sign up</button>
-</form>
+<script lang="ts">
+	import type { PageData } from './$types.js';
+	import * as Card from '$lib/components/ui/card';
+	import LoginForm from './LoginForm.svelte';
+	export let data: PageData;
+</script>
+
+<div class="flex justify-center">
+	<Card.Root class="w-6/12">
+		<Card.Header>
+			<Card.Title>Login</Card.Title>
+		</Card.Header>
+		<Card.Content>
+			<LoginForm data={data.form} />
+		</Card.Content>
+	</Card.Root>
+</div>
