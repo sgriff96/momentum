@@ -10,4 +10,5 @@ export type HabitData = {
 	date: Date;
 	value?: number;
 	completed: boolean;
+	trend: string;
 };

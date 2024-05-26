@@ -43,6 +43,7 @@
 
 		acc.push({
 			...d,
+			date: new Date(d.date),
 			value,
 			trend: String(m)
 		});

@@ -1,6 +1,6 @@
 import type { IHabit } from '../lib/types/Habit';
 
-const HABIT_DATA = [
+export const HABIT_DATA = [
 	{
 		date: new Date('2024-04-25T07:00:00.000Z'),
 		completed: true

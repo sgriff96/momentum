@@ -4,9 +4,10 @@
 
 	export let data: PageData;
 
-	const habit = data.habits.find((habit) => habit.id === data.habitId);
+	//const habit = data.habits.find((habit) => habit.id === data.habitId);
 </script>
 
+<!-- 
 {#if habit}
 	<Habit {habit} />
-{/if}
+{/if} -->

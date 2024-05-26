@@ -13,12 +13,36 @@
 	import type { LayoutData } from './$types';
 	import type { IHabit } from '$lib/types/Habit';
 
+	import { goto, invalidate } from '$app/navigation';
+	import { onMount } from 'svelte';
+
 	export let data: LayoutData;
 
-	const habits = writable<IHabit[]>();
-	$: habits.set(data.habits);
+	$: ({ session, supabase } = data);
 
-	setContext('habits', habits);
+	onMount(() => {
+		const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
+			if (!newSession) {
+				/**
+				 * Queue this as a task so the navigation won't prevent the
+				 * triggering function from completing
+				 */
+				setTimeout(() => {
+					goto('/', { invalidateAll: true });
+				});
+			}
+			if (newSession?.expires_at !== session?.expires_at) {
+				invalidate('supabase:auth');
+			}
+		});
+
+		return () => data.subscription.unsubscribe();
+	});
+
+	// const habits = writable<IHabit[]>();
+	// $: habits.set(data.habits);
+
+	// setContext('habits', habits);
 </script>
 
 <ModeWatcher />
