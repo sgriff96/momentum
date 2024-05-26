@@ -35,6 +35,7 @@
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
 		"prettier-plugin-tailwindcss": "^0.5.1",
+		"supabase": "^1.167.4",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
 		"tailwindcss": "^3.4.1",
@@ -46,6 +47,7 @@
 	"type": "module",
 	"dependencies": {
 		"@formkit/tempo": "^0.1.1",
+		"@supabase/supabase-js": "^2.43.4",
 		"bits-ui": "^0.21.9",
 		"clsx": "^2.1.1",
 		"d3-array": "^3.2.4",

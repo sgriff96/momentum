@@ -1,12 +1,10 @@
 <script lang="ts">
 	import AreaChart from '$lib/charts/AreaChart.svelte';
 	import * as Card from '$lib/components/ui/card';
-	import type { HabitData, IHabit } from '$lib/types/Habit';
+	import type { HabitData, IHabit } from '../types/Habit';
 	import { diffDays } from '@formkit/tempo';
 
 	export let habit: IHabit;
-
-	console.log('habit', habit);
 
 	const getTrend = (data: HabitData[], i: number) => {
 		let trend = 0;
@@ -31,20 +29,22 @@
 		// m is the trend, 1, 0 or -1
 		// b is y(n-1), the previous value (?)
 		// x is the amount of days since starting the habit
+		let m = 0;
 
 		if (i === 0 && d.completed === true) {
 			value = 1;
 		} else {
 			const x = diffDays(d.date, habit.startDate);
 			const b = acc[i - 1]?.value ?? 0;
-			const m = getTrend(acc, i); // THIS ISNT RIGHT
+			m = getTrend(acc, i); // THIS ISNT RIGHT
 
 			value = m * x + b;
 		}
 
 		acc.push({
 			...d,
-			value
+			value,
+			trend: String(m)
 		});
 		return acc;
 	}, []);

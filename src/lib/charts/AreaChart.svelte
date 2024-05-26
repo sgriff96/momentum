@@ -12,19 +12,21 @@
 		Highlight,
 		Tooltip
 	} from 'layerchart';
-	import type { HabitData } from '$lib/types/Habit';
+	import type { HabitData } from '../types/Habit';
+	import { date } from 'svelte-ux';
+	import { MoveRight, TrendingDown, TrendingUp } from 'lucide-svelte';
 
 	export let data: HabitData[];
 
 	// https://d3js.org/d3-shape/curve
 	// https://www.layerchart.com/docs/components/Area
-	const curve = d3shapes['curveBasis'];
+	const curve = d3shapes['linear']; // curveBasis
 </script>
 
 <div class="h-[200px]">
 	<Chart
 		{data}
-		x="date"
+		x={(d) => new Date(d.date)}
 		xScale={scaleTime()}
 		y="value"
 		yDomain={[0, null]}
@@ -54,10 +56,19 @@
 		<Tooltip
 			xOffset={4}
 			variant="none"
-			class="text-primary-content whitespace-nowrap rounded bg-primary px-2 py-1 text-sm font-semibold leading-3 text-primary-foreground"
+			class="whitespace-nowrap rounded-md border bg-background px-2 py-1 text-sm leading-3 text-foreground"
 			let:data
 		>
-			{format(data.date, 'long')}
+			<div class="flex items-center gap-2">
+				{#if data.trend === '0'}
+					<MoveRight class="inline-block h-4 w-4" />
+				{:else if data.trend === '1'}
+					<TrendingUp class="inline-block h-4 w-4" />
+				{:else if data.trend === '-1'}
+					<TrendingDown class="inline-block h-4 w-4" />
+				{/if}
+				{format(data.date, 'long')}
+			</div>
 		</Tooltip>
 	</Chart>
 </div>

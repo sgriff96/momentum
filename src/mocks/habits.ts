@@ -1,4 +1,4 @@
-import type { IHabit } from '$lib/types/Habit';
+import type { IHabit } from '../lib/types/Habit';
 
 const HABIT_DATA = [
 	{
@@ -125,21 +125,21 @@ const HABIT_DATA = [
 
 export const MOCK_HABITS: IHabit[] = [
 	{
-		id: '1',
+		id: '7e766f8d-050a-4c56-b6b0-0d58dba21b45',
 		name: 'Exercise',
 		description: 'Do some exercise',
 		data: HABIT_DATA,
 		startDate: new Date('2024-04-25T07:00:00.000Z')
 	},
 	{
-		id: '2',
+		id: 'b2a8fc07-e1c8-4fe9-bdc2-3a11bd6fcdb5',
 		name: 'Read',
 		description: 'Read a book',
 		data: HABIT_DATA,
 		startDate: new Date('2024-04-25T07:00:00.000Z')
 	},
 	{
-		id: '3',
+		id: '4ca36d2e-9cd9-4cc1-a6cb-ed369d21c8aa',
 		name: 'Meditate',
 		description: 'Meditate for 10 minutes',
 		data: HABIT_DATA,
