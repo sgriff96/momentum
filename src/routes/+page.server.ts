@@ -1,4 +1,7 @@
 import type { PageServerLoad } from './$types';
+import { superValidate } from 'sveltekit-superforms';
+import { habitFormSchema } from './schema';
+import { zod } from 'sveltekit-superforms/adapters';
 
 export const load: PageServerLoad = async ({ depends, locals: { supabase, session } }) => {
 	depends('supabase:db:habits');
@@ -8,5 +11,8 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
 		.select('*')
 		.eq('createdBy', session?.user.id);
 	console.log('habits', habits);
-	return { habits: habits ?? [] };
+	return {
+		habits: habits ?? [],
+		habitForm: await superValidate(zod(habitFormSchema))
+	};
 };
