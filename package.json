@@ -47,9 +47,10 @@
 	"type": "module",
 	"dependencies": {
 		"@formkit/tempo": "^0.1.1",
+		"@internationalized/date": "^3.5.4",
 		"@supabase/ssr": "^0.3.0",
 		"@supabase/supabase-js": "^2.43.4",
-		"bits-ui": "^0.21.9",
+		"bits-ui": "^0.21.10",
 		"clsx": "^2.1.1",
 		"d3-array": "^3.2.4",
 		"d3-scale": "^4.0.2",

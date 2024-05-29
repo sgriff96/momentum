@@ -1,17 +1,14 @@
 <script lang="ts">
+	import Moon from 'lucide-svelte/icons/moon';
+	import Sun from 'lucide-svelte/icons/sun';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
-	import Sun from 'lucide-svelte/icons/sun';
-	import Moon from 'lucide-svelte/icons/moon';
 
-	import { toggleMode } from 'mode-watcher';
-	import { Button } from '$lib/components/ui/button/index.js';
 	import NavItem from '$lib/components/NavItem.svelte';
+	import { Button } from '$lib/components/ui/button/index.js';
+	import { toggleMode } from 'mode-watcher';
 
-	import { setContext } from 'svelte';
-	import { writable } from 'svelte/store';
 	import type { LayoutData } from './$types';
-	import type { IHabit } from '$lib/types/Habit';
 
 	import { goto, invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';

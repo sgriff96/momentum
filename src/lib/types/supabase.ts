@@ -19,7 +19,7 @@ export type Database = {
         Insert: {
           date: string
           habitId: string
-          id: string
+          id?: string
           value: number
         }
         Update: {
@@ -40,27 +40,62 @@ export type Database = {
       }
       habits: {
         Row: {
+          created_at: string | null
           data: Json | null
           description: string | null
           id: string
+          is_active: boolean
           name: string
-          startDate: string | null
+          user_id: string
         }
         Insert: {
+          created_at?: string | null
           data?: Json | null
           description?: string | null
           id: string
+          is_active?: boolean
           name: string
-          startDate?: string | null
+          user_id?: string
         }
         Update: {
+          created_at?: string | null
           data?: Json | null
           description?: string | null
           id?: string
+          is_active?: boolean
           name?: string
-          startDate?: string | null
+          user_id?: string
         }
         Relationships: []
+      }
+      notes: {
+        Row: {
+          created_at: string
+          id: number
+          note: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: never
+          note: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: never
+          note?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

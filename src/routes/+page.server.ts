@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
 	const { data: habits } = await supabase
 		.from('habits')
 		.select('*')
-		.eq('createdBy', session?.user.id);
+		.eq('user_id', session?.user.id);
 	console.log('habits', habits);
 	return {
 		habits: habits ?? [],

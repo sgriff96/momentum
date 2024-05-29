@@ -23,7 +23,7 @@
 		return trend;
 	};
 
-	const bah = habit.data.reduce((acc: HabitData[], d, i) => {
+	const bah = habit.data?.reduce((acc: HabitData[], d, i) => {
 		let value;
 		// y = mx + b
 		// m is the trend, 1, 0 or -1
@@ -34,7 +34,7 @@
 		if (i === 0 && d.completed === true) {
 			value = 1;
 		} else {
-			const x = diffDays(d.date, habit.startDate);
+			const x = diffDays(d.date, new Date(String(habit.created_at)));
 			const b = acc[i - 1]?.value ?? 0;
 			m = getTrend(acc, i); // THIS ISNT RIGHT
 
@@ -50,7 +50,7 @@
 		return acc;
 	}, []);
 
-	console.log(bah);
+	console.log(habit, bah);
 </script>
 
 <Card.Root class="overflow-hidden transition-all duration-300 ease-in-out hover:border-primary">
