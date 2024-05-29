@@ -11,9 +11,7 @@
 <div class="flex justify-between">
 	<h1 class="mb-4 text-2xl font-bold">Habits</h1>
 	<Dialog.Root>
-		<Dialog.Trigger class={buttonVariants({ variant: 'default', size: 'sm' })}
-			>New Habit</Dialog.Trigger
-		>
+		<Dialog.Trigger class={buttonVariants({ variant: 'default', size: 'sm' })}>New Habit</Dialog.Trigger>
 		<Dialog.Content>
 			<Dialog.Header>
 				<Dialog.Title>New Habit</Dialog.Title>
@@ -25,6 +23,6 @@
 
 {#each data.habits as habit (habit.id)}
 	<div class="mb-2">
-		<Habit {habit} />
+		<Habit habit={habit} />
 	</div>
 {/each}
