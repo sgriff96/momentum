@@ -9,29 +9,32 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      habitData: {
+      habit_data: {
         Row: {
+          completed: boolean
           date: string
-          habitId: string
+          habit_id: string
           id: string
-          value: number
+          user_id: string
         }
         Insert: {
+          completed: boolean
           date: string
-          habitId: string
+          habit_id: string
           id?: string
-          value: number
+          user_id?: string
         }
         Update: {
+          completed?: boolean
           date?: string
-          habitId?: string
+          habit_id?: string
           id?: string
-          value?: number
+          user_id?: string
         }
         Relationships: [
           {
             foreignKeyName: "habitData_habitId_fkey"
-            columns: ["habitId"]
+            columns: ["habit_id"]
             isOneToOne: false
             referencedRelation: "habits"
             referencedColumns: ["id"]

@@ -14,10 +14,8 @@
 
 	let value: DateValue[] | undefined = undefined;
 	const onClick = () => {
-		console.log(value);
 		for (let v of value) {
 			const newDate = v.toDate(getLocalTimeZone());
-			console.log(newDate);
 		}
 	};
 </script>
