@@ -7,10 +7,9 @@
 	import { type DateValue, getLocalTimeZone } from '@internationalized/date';
 	import CalendarIcon from 'lucide-svelte/icons/calendar';
 	import type { PageData } from './$types';
-	import type { HabitData } from '$lib/types/Habit';
 
 	export let data: PageData;
-	const habitData = data.habit.data as HabitData[];
+	const habitData = data.habit.habit_data;
 
 	let value: DateValue[] | undefined = undefined;
 	const onClick = () => {
