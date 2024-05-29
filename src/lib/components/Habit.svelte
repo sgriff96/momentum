@@ -23,18 +23,21 @@
 		return trend;
 	};
 
-	const bah = habit.data?.reduce((acc: HabitData[], d, i) => {
+	const data = habit.data as HabitData[];
+
+	const bah = data.reduce((acc: HabitData[], d, i) => {
 		let value;
 		// y = mx + b
 		// m is the trend, 1, 0 or -1
 		// b is y(n-1), the previous value (?)
 		// x is the amount of days since starting the habit
 		let m = 0;
+		const date = new Date(d.date);
 
 		if (i === 0 && d.completed === true) {
 			value = 1;
 		} else {
-			const x = diffDays(d.date, new Date(String(habit.created_at)));
+			const x = diffDays(date, new Date(String(habit.created_at)));
 			const b = acc[i - 1]?.value ?? 0;
 			m = getTrend(acc, i); // THIS ISNT RIGHT
 
@@ -43,14 +46,12 @@
 
 		acc.push({
 			...d,
-			date: new Date(d.date),
+			date: date,
 			value,
 			trend: String(m)
 		});
 		return acc;
 	}, []);
-
-	console.log(habit, bah);
 </script>
 
 <Card.Root class="overflow-hidden transition-all duration-300 ease-in-out hover:border-primary">

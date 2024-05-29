@@ -20,11 +20,11 @@
 	bind:placeholder
 	{weekdayFormat}
 	class={cn('p-3', className)}
+	multiple
 	{...$$restProps}
 	on:keydown
 	let:months
 	let:weekdays
-	multiple
 >
 	<Calendar.Header>
 		<Calendar.PrevButton />
