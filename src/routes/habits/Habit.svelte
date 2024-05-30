@@ -1,7 +1,7 @@
 <script lang="ts">
 	import AreaChart from '$lib/charts/AreaChart.svelte';
 	import * as Card from '$lib/components/ui/card';
-	import type { HabitData, IHabit } from '../types/Habit';
+	import type { HabitData, IHabit } from '$lib/types/Habit';
 	import { diffDays } from '@formkit/tempo';
 
 	export let habit: IHabit;
@@ -43,20 +43,20 @@
 
 		acc.push({
 			...d,
-			value
+			value,
 		});
 		return acc;
 	}, []);
 </script>
 
 <Card.Root class="overflow-hidden transition-all duration-300 ease-in-out hover:border-primary">
-	<a href={`/habit/${habit.id}`}>
+	<a href={`/habits/${habit.id}`}>
 		<Card.Header>
 			<Card.Title>{habit.name}</Card.Title>
 			<Card.Description>{habit.description}</Card.Description>
 		</Card.Header>
 		<Card.Content>
-			<AreaChart {data} />
+			<AreaChart data={data} />
 		</Card.Content>
 	</a>
 </Card.Root>

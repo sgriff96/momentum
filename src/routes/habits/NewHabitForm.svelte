@@ -9,28 +9,24 @@
 	export let data: SuperValidated<Infer<HabitFormSchema>>;
 
 	const form = superForm(data, {
-		validators: zodClient(habitFormSchema)
+		validators: zodClient(habitFormSchema),
 	});
 
 	const { form: formData, enhance } = form;
 </script>
 
 <form method="POST" use:enhance>
-	<Form.Field {form} name="habitName">
+	<Form.Field form={form} name="habitName">
 		<Form.Control let:attrs>
 			<Form.Label>Habit Name</Form.Label>
 			<Input {...attrs} bind:value={$formData.habitName} />
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>
-	<Form.Field {form} name="habitDescription">
+	<Form.Field form={form} name="habitDescription">
 		<Form.Control let:attrs>
 			<Form.Label>Habit Description (optional)</Form.Label>
-			<Textarea
-				{...attrs}
-				placeholder="A description of your habit"
-				bind:value={$formData.habitDescription}
-			/>
+			<Textarea {...attrs} placeholder="A description of your habit" bind:value={$formData.habitDescription} />
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>

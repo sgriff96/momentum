@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Habit from '$lib/components/Habit.svelte';
+	import Habit from '../Habit.svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Calendar } from '$lib/components/ui/calendar/index.js';
 	import * as Popover from '$lib/components/ui/popover/index.js';
@@ -11,23 +11,22 @@
 	export let data: PageData;
 	const habitData = data.habit.habit_data;
 
-	let value: DateValue[] = [];
+	let calendarValues: DateValue[];
+	$: calendarValues = habitData.map((d) => {
+		const isoDate = new Date(d.date).toISOString().split('Z')[0];
+		return parseDateTime(isoDate);
+	});
 
-	if (habitData) {
-		value = habitData.map((d) => {
-			const isoDate = new Date(d.date).toISOString().split('Z')[0];
-			return parseDateTime(isoDate);
-		});
-	}
+	//console.log('calendarValues', calendarValues);
 
 	const onClick = () => {
-		const newValue = value.map((v) => {
+		const newCalendarValues = calendarValues.map((v) => {
 			const newDate = v.toDate(getLocalTimeZone());
 			return newDate;
 		});
 		// put to habit data endpoint all the data
 		habitData.forEach((d, i) => {
-			console.log('d', d, 'value[i]', value[i], newValue[i]);
+			// console.log('d', d, 'value[i]', calendarValues[i], newCalendarValues[i]);
 			const id = d.id;
 			// PUT /api/data/:id
 		});
@@ -45,7 +44,7 @@
 			</Button>
 		</Popover.Trigger>
 		<Popover.Content class="w-auto p-0">
-			<Calendar bind:value={value} multiple initialFocus />
+			<Calendar bind:value={calendarValues} multiple initialFocus onValueChange={(d) => console.log(d)} />
 		</Popover.Content>
 	</Popover.Root>
 </div>

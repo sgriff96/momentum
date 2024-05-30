@@ -7,19 +7,19 @@ import { fail } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async () => {
 	return {
-		form: await superValidate(zod(formSchema))
+		form: await superValidate(zod(formSchema)),
 	};
 };
 
 export const actions: Actions = {
 	signup: async (event) => {
 		const {
-			locals: { supabase }
+			locals: { supabase },
 		} = event;
 		const form = await superValidate(event, zod(formSchema));
 		if (!form.valid) {
 			return fail(400, {
-				form
+				form,
 			});
 		}
 
@@ -29,17 +29,17 @@ export const actions: Actions = {
 			console.error(error);
 			return redirect(303, '/auth/error');
 		} else {
-			return redirect(303, '/');
+			return redirect(303, '/habits');
 		}
 	},
 	login: async (event) => {
 		const {
-			locals: { supabase }
+			locals: { supabase },
 		} = event;
 		const form = await superValidate(event, zod(formSchema));
 		if (!form.valid) {
 			return fail(400, {
-				form
+				form,
 			});
 		}
 
@@ -49,7 +49,7 @@ export const actions: Actions = {
 			console.error(error);
 			return redirect(303, '/auth/error');
 		} else {
-			return redirect(303, '/');
+			return redirect(303, '/habits');
 		}
-	}
+	},
 };

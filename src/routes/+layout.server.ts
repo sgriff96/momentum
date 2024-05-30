@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import type { LayoutServerLoad } from './$types';
 
 const ignoreSupabaseWarnings = () => {
