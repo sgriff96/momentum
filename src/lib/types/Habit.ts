@@ -10,6 +10,6 @@ import type { Tables } from './supabase';
 
 export type HabitData = Tables<'habit_data'>;
 
-export type IHabit = Tables<'habits'> & {
-	habit_data: HabitData[];
+export type IHabit = Omit<Tables<'habits'>, 'data'> & {
+	data: HabitData[];
 };

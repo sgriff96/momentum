@@ -23,7 +23,7 @@
 		return trend;
 	};
 
-	const data = habit.habit_data.reduce((acc: (HabitData & { value: number })[], d, i) => {
+	const data = habit.data.reduce((acc: (HabitData & { value: number })[], d, i) => {
 		let value;
 		// y = mx + b
 		// m is the trend, 1, 0 or -1

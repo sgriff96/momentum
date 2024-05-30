@@ -13,17 +13,10 @@ export async function GET({ locals: { supabase, session } }) {
 				user_id,
 				is_active,
 				created_at,
-				habit_data (
-					id,
-					date,
-					habit_id,
-					completed,
-					user_id
-				)
+				data
   		`,
 		)
 		.eq('user_id', session?.user.id)
-		.order('date', { referencedTable: 'habit_data', ascending: true })
 		.returns<IHabit[]>();
 
 	if (habitError) {
@@ -31,6 +24,17 @@ export async function GET({ locals: { supabase, session } }) {
 			message: habitError.message,
 		});
 	}
+
+	// console.log(habits);
+
+	// const res = await supabase
+	// 	.from('habits')
+	// 	.update({
+	// 		data: habits[1].habit_data.sort((a, b) => new Date(a.date) - new Date(b.date)),
+	// 	})
+	// 	.eq('id', '7e766f8d-050a-4c56-b6b0-0d58dba21b45');
+
+	// // console.log(res);
 
 	return json(habits);
 }

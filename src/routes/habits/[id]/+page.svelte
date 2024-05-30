@@ -7,9 +7,10 @@
 	import CalendarIcon from 'lucide-svelte/icons/calendar';
 	import Settings from 'lucide-svelte/icons/settings';
 	import type { PageData } from './$types';
+	import DatePicker from '$lib/components/DatePicker/DatePicker.svelte';
 
 	export let data: PageData;
-	const habitData = data.habit.habit_data;
+	const habitData = data.habit.data;
 
 	let calendarValues: DateValue[];
 	$: calendarValues = habitData.map((d) => {
@@ -52,3 +53,5 @@
 {#if data.habit}
 	<Habit habit={data.habit} />
 {/if}
+
+<DatePicker habitData={habitData} />

@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
 
-	goto('/habits');
+	if (browser) {
+		// to prevent error window is not defined, because it's SSR
+		window.location.href = '/habits';
+	}
 </script>

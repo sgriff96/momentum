@@ -13,18 +13,11 @@ export async function GET({ params, locals: { supabase, session } }) {
 				user_id,
 				is_active,
 				created_at,
-				habit_data (
-					id,
-					date,
-					habit_id,
-					completed,
-					user_id
-				)
+				data
   		`,
 		)
 		.eq('user_id', session?.user.id)
 		.eq('id', params.id)
-		.order('date', { referencedTable: 'habit_data', ascending: true })
 		.returns<IHabit[]>();
 
 	if (habitError) {
