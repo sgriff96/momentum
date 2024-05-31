@@ -4,9 +4,9 @@
 	import { format } from 'date-fns';
 	import { Area, Axis, Chart, Highlight, LinearGradient, RectClipPath, Svg, Tooltip } from 'layerchart';
 	import { MoveRight, TrendingDown, TrendingUp } from 'lucide-svelte';
-	import type { HabitData } from '../types/Habit';
+	import type { HabitDataWithValue } from '../types/Habit';
 
-	export let data: HabitData[];
+	export let data: HabitDataWithValue[];
 
 	const newData = data.map((d) => ({
 		value: d.value,

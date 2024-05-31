@@ -1,6 +1,5 @@
 import type { HabitData, IHabit } from '$lib/types/Habit';
 import { error, json } from '@sveltejs/kit';
-import { format } from 'date-fns';
 
 export async function GET({ params, locals: { supabase, session } }) {
 	const { data: habits, error: habitsError } = await supabase
@@ -18,7 +17,7 @@ export async function GET({ params, locals: { supabase, session } }) {
   		`,
 		)
 		.eq('user_id', session?.user.id)
-		.eq('id', params.id)
+		.eq('id', params.habitId)
 		.returns<IHabit[]>();
 
 	if (habitsError) {
@@ -37,7 +36,8 @@ export async function GET({ params, locals: { supabase, session } }) {
 			`,
 		)
 		.eq('user_id', session?.user.id)
-		.eq('habit_id', params.id)
+		.eq('habit_id', params.habitId)
+		.order('date', { ascending: true })
 		.returns<HabitData[]>();
 
 	if (dataError) {
@@ -65,7 +65,7 @@ export async function GET({ params, locals: { supabase, session } }) {
 export async function PUT({ params, request, locals: { supabase } }) {
 	const { habitData } = await request.json();
 
-	const { error: putError } = await supabase.from('habits').update({ data: habitData }).eq('id', params.id);
+	const { error: putError } = await supabase.from('habits').update({ data: habitData }).eq('id', params.habitId);
 
 	if (putError) {
 		return error(Number(putError.code), {

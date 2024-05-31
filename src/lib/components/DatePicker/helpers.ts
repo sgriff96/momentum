@@ -20,7 +20,7 @@ export const getDatesBetween = (startDate: string) => {
 };
 
 // Function to find the earliest date in the array and populate missing dates
-export const populateMissingDates = (dateArray: HabitData[]): HabitData[] => {
+export const populateMissingDates = (dateArray: HabitData[]): Omit<HabitData, 'id'>[] => {
 	// Parse the date strings into Date objects and find the earliest date
 	// @ts-expect-error Math.min typing expects a number but it does work with dates
 	const earliestDate = new Date(Math.min(...dateArray.map((item) => parseISO(item.date))));
@@ -37,10 +37,12 @@ export const populateMissingDates = (dateArray: HabitData[]): HabitData[] => {
 		const formattedDate = format(date, 'yyyy-MM-dd');
 		const item = dateMap.get(formattedDate);
 		return {
-			...(item ? { value: item.value, completed: item.completed } : { value: 0, completed: false }),
+			...(item ? { completed: item.completed } : { completed: false }),
 			date: formattedDate,
 		};
 	});
 
 	return result;
 };
+
+export const sortDates = (a: string, b: string) => new Date(a).getTime() - new Date(b).getTime();

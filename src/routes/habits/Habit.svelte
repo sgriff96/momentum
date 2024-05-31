@@ -2,12 +2,13 @@
 	import AreaChart from '$lib/charts/AreaChart.svelte';
 	import { populateMissingDates } from '$lib/components/DatePicker/helpers';
 	import * as Card from '$lib/components/ui/card';
-	import type { HabitData, IHabit } from '$lib/types/Habit';
+	import type { HabitData, IHabit, HabitDataWithValue } from '$lib/types/Habit';
 	import { differenceInDays } from 'date-fns';
 
 	export let habit: IHabit;
+	export let habitData: HabitData[];
 
-	const getTrend = (data: HabitData[], i: number) => {
+	const getTrend = (data: HabitDataWithValue[], i: number) => {
 		let trend = 0;
 		if (data[i - 1].completed === true) {
 			trend = 1;
@@ -25,9 +26,9 @@
 	};
 
 	// populate new data
-	const allDates = populateMissingDates(habit.data);
+	const allDates = populateMissingDates(habitData);
 
-	const data = allDates.reduce((acc: HabitData[], d, i) => {
+	const data = allDates.reduce((acc: HabitDataWithValue[], d, i) => {
 		let value;
 		// y = mx + b
 		// m is the trend, 1, 0 or -1
