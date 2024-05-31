@@ -8,7 +8,11 @@
 
 import type { Tables } from './supabase';
 
-export type HabitData = Tables<'habit_data'>;
+export type HabitData = {
+	completed: boolean;
+	date: string;
+	value: number;
+};
 
 export type IHabit = Omit<Tables<'habits'>, 'data'> & {
 	data: HabitData[];

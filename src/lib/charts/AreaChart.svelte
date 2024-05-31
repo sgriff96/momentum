@@ -1,21 +1,17 @@
 <script lang="ts">
-	import { format } from '@formkit/tempo';
-	import * as d3shapes from 'd3-shape';
 	import { scaleTime } from 'd3-scale';
-	import {
-		Axis,
-		Chart,
-		Area,
-		Svg,
-		LinearGradient,
-		RectClipPath,
-		Highlight,
-		Tooltip
-	} from 'layerchart';
-	import type { HabitData } from '../types/Habit';
+	import * as d3shapes from 'd3-shape';
+	import { format } from 'date-fns';
+	import { Area, Axis, Chart, Highlight, LinearGradient, RectClipPath, Svg, Tooltip } from 'layerchart';
 	import { MoveRight, TrendingDown, TrendingUp } from 'lucide-svelte';
+	import type { HabitData } from '../types/Habit';
 
 	export let data: HabitData[];
+
+	const newData = data.map((d) => ({
+		value: d.value,
+		date: new Date(d.date),
+	}));
 
 	// https://d3js.org/d3-shape/curve
 	// https://www.layerchart.com/docs/components/Area
@@ -25,8 +21,8 @@
 
 <div class="h-[200px]">
 	<Chart
-		{data}
-		x={(d) => new Date(d.date)}
+		data={newData}
+		x={'date'}
 		xScale={scaleTime()}
 		y="value"
 		yDomain={[0, null]}
@@ -38,17 +34,17 @@
 	>
 		<Svg>
 			<LinearGradient class="fill from-primary" vertical let:url>
-				<Area {curve} line={{ class: 'stroke-2 stroke-primary opacity-20' }} fill={url} />
-				<RectClipPath x={0} y={0} width={tooltip.data ? tooltip.x : width} {height} spring>
-					<Area {curve} line={{ class: 'stroke-2 stroke-primary' }} fill={url} />
+				<Area curve={curve} line={{ class: 'stroke-2 stroke-primary opacity-20' }} fill={url} />
+				<RectClipPath x={0} y={0} width={tooltip.data ? tooltip.x : width} height={height} spring>
+					<Area curve={curve} line={{ class: 'stroke-2 stroke-primary' }} fill={url} />
 				</RectClipPath>
 			</LinearGradient>
 			<Highlight points />
 			<Axis
 				placement="bottom"
-				format={(d) => format(d, 'MM/DD')}
+				format={(d) => format(d, 'MM-dd')}
 				labelProps={{
-					class: 'fill-secondary-foreground'
+					class: 'fill-secondary-foreground',
 				}}
 			/>
 		</Svg>
@@ -67,7 +63,7 @@
 				{:else if data.trend === '-1'}
 					<TrendingDown class="inline-block h-4 w-4" />
 				{/if}
-				{format(data.date, 'long')}
+				{format(data.date, 'yyyy-MM-dd')}
 			</div>
 		</Tooltip>
 	</Chart>

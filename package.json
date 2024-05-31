@@ -46,7 +46,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@formkit/tempo": "^0.1.1",
 		"@internationalized/date": "^3.5.4",
 		"@supabase/ssr": "^0.3.0",
 		"@supabase/supabase-js": "^2.43.4",
@@ -55,7 +54,6 @@
 		"d3-array": "^3.2.4",
 		"d3-scale": "^4.0.2",
 		"date-fns": "^3.6.0",
-		"dayjs": "^1.11.11",
 		"formsnap": "^1.0.0",
 		"layercake": "^8.2.0",
 		"layerchart": "^0.36.5",

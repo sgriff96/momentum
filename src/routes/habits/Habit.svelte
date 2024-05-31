@@ -1,8 +1,9 @@
 <script lang="ts">
 	import AreaChart from '$lib/charts/AreaChart.svelte';
+	import { populateMissingDates } from '$lib/components/DatePicker/helpers';
 	import * as Card from '$lib/components/ui/card';
 	import type { HabitData, IHabit } from '$lib/types/Habit';
-	import { diffDays } from '@formkit/tempo';
+	import { differenceInDays } from 'date-fns';
 
 	export let habit: IHabit;
 
@@ -23,7 +24,10 @@
 		return trend;
 	};
 
-	const data = habit.data.reduce((acc: (HabitData & { value: number })[], d, i) => {
+	// populate new data
+	const allDates = populateMissingDates(habit.data);
+
+	const data = allDates.reduce((acc: HabitData[], d, i) => {
 		let value;
 		// y = mx + b
 		// m is the trend, 1, 0 or -1
@@ -34,7 +38,7 @@
 		if (i === 0 && d.completed === true) {
 			value = 1;
 		} else {
-			const x = diffDays(new Date(d.date), new Date(String(habit.created_at)));
+			const x = differenceInDays(new Date(d.date), new Date(String(habit.created_at)));
 			const b = acc[i - 1]?.value ?? 0;
 			m = getTrend(acc, i); // THIS ISNT RIGHT
 
