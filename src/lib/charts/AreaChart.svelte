@@ -15,8 +15,8 @@
 
 	// https://d3js.org/d3-shape/curve
 	// https://www.layerchart.com/docs/components/Area
-	// @ts-expect-error- d3-shape types are not up to date
-	const curve = d3shapes['linear']; // curveBasis
+	// @ts-expect-error d3-shape types are not up to date
+	const curve = d3shapes['linear']; // curveBasis or linear
 </script>
 
 <div class="h-[200px]">
