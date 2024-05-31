@@ -1,8 +1,9 @@
-import type { IHabit } from '$lib/types/Habit';
+import type { HabitData, IHabit } from '$lib/types/Habit';
 import { error, json } from '@sveltejs/kit';
+import { format } from 'date-fns';
 
 export async function GET({ params, locals: { supabase, session } }) {
-	const { data: habits, error: getError } = await supabase
+	const { data: habits, error: habitsError } = await supabase
 		.from('habits')
 		.select(
 			`
@@ -20,13 +21,45 @@ export async function GET({ params, locals: { supabase, session } }) {
 		.eq('id', params.id)
 		.returns<IHabit[]>();
 
-	if (getError) {
-		error(Number(getError.code), {
-			message: getError.message,
+	if (habitsError) {
+		error(Number(habitsError.code), {
+			message: habitsError.message,
 		});
 	}
 
-	return json(habits);
+	const { data: habitData, error: dataError } = await supabase
+		.from('habit_data')
+		.select(
+			`
+				id,
+				date,
+				completed
+			`,
+		)
+		.eq('user_id', session?.user.id)
+		.eq('habit_id', params.id)
+		.returns<HabitData[]>();
+
+	if (dataError) {
+		error(Number(dataError.code), {
+			message: dataError.message,
+		});
+	}
+
+	// habitData.forEach(async (item) => {
+	// 	console.log('item', item);
+	// 	const { error } = await supabase
+	// 		.from('habit_data')
+	// 		.update({ date: format(new Date(item.date), 'yyyy-MM-dd') })
+	// 		.eq('id', item.id);
+
+	// 	console.log('error', error);
+	// });
+
+	return json({
+		habits,
+		habitData,
+	});
 }
 
 export async function PUT({ params, request, locals: { supabase } }) {

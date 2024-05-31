@@ -4,7 +4,7 @@
 	import { ChevronLeft, ChevronRight } from 'lucide-svelte';
 	import { createEventDispatcher } from 'svelte';
 	import Button from '../ui/button/button.svelte';
-	import { getWeekDates, sortDateStrings } from './helpers';
+	import { getWeekDates } from './helpers';
 
 	const dispatch = createEventDispatcher();
 
@@ -16,8 +16,6 @@
 	const today = new Date();
 	$: currentWorkingDate = new Date(today);
 	$: weekDates = getWeekDates(currentWorkingDate);
-
-	//const toggleGroupValues = writable(completedDatesSet);
 
 	const goLeft = () => {
 		currentWorkingDate = sub(currentWorkingDate, { weeks: 1 });
@@ -38,7 +36,7 @@
 			// I'm not sure if this is idiotic or genius
 			completedDatesSet = new Set(completedDatesSet);
 		}
-		dispatch('onValueChange', Array.from(completedDatesSet).sort(sortDateStrings));
+		//	dispatch('onValueChange', Array.from(completedDatesSet).sort(sortDateStrings));
 	};
 </script>
 

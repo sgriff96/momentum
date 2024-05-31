@@ -1,7 +1,7 @@
 import type { HabitData } from '$lib/types/Habit';
 import { eachDayOfInterval, endOfWeek, format, parseISO, startOfWeek } from 'date-fns';
 
-export const getWeekDates = (date: Date) => {
+export const getWeekDates = (date: Date): string[] => {
 	// Get the start and end date of the week
 	const start = startOfWeek(date, { weekStartsOn: 1 }); // Monday
 	const end = endOfWeek(date, { weekStartsOn: 1 }); // Sunday
@@ -9,7 +9,8 @@ export const getWeekDates = (date: Date) => {
 	// Create an array with all dates of the week
 	const weekDates = eachDayOfInterval({ start, end });
 
-	return weekDates;
+	// Format the dates to 'yyyy-MM-dd'
+	return weekDates.map((date) => format(date, 'yyyy-MM-dd'));
 };
 
 export const getDatesBetween = (startDate: string) => {
