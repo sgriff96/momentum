@@ -1,8 +1,7 @@
 import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
-import type { HabitData } from './types/Habit';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -54,9 +53,4 @@ export const flyAndScale = (
 		},
 		easing: cubicOut,
 	};
-};
-
-export const sortHabitData = (data: HabitData[]) => {
-	const newArr = [...data];
-	return newArr.sort((a, b) => new Date(a.date) - new Date(b.date));
 };

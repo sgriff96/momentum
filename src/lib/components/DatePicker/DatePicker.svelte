@@ -1,21 +1,23 @@
 <script lang="ts">
 	import type { HabitData } from '$lib/types/Habit';
 	import { add, format, sub } from 'date-fns';
-	import Button from '../ui/button/button.svelte';
-	import { getWeekDates } from './helpers';
-	import * as ToggleGroup from '$lib/components/ui/toggle-group/index.js';
-	import { writable } from 'svelte/store';
 	import { ChevronLeft, ChevronRight } from 'lucide-svelte';
+	import { createEventDispatcher } from 'svelte';
+	import Button from '../ui/button/button.svelte';
+	import { getWeekDates, sortDateStrings } from './helpers';
+
+	const dispatch = createEventDispatcher();
 
 	export let habitData: HabitData[];
 
-	const completedDatesArr = habitData.filter((d) => d.completed).map((d) => format(new Date(d.date), 'yyyy-MM-dd'));
+	// need to re-render when completed Date set is updated
+	$: completedDatesSet = new Set(habitData.map((d) => d.date));
 
 	const today = new Date();
 	$: currentWorkingDate = new Date(today);
 	$: weekDates = getWeekDates(currentWorkingDate);
 
-	const toggleGroupValues = writable(completedDatesArr);
+	//const toggleGroupValues = writable(completedDatesSet);
 
 	const goLeft = () => {
 		currentWorkingDate = sub(currentWorkingDate, { weeks: 1 });
@@ -27,23 +29,26 @@
 		weekDates = getWeekDates(currentWorkingDate);
 	};
 
-	const onValueChange = (v: string[] | undefined) => {
-		if (v) {
-			toggleGroupValues.set(v);
-			// POST new values to api
+	const onValueChange = (d: string) => {
+		if (completedDatesSet.has(d)) {
+			completedDatesSet.delete(d);
+			completedDatesSet = new Set(completedDatesSet);
+		} else {
+			completedDatesSet.add(d);
+			// I'm not sure if this is idiotic or genius
+			completedDatesSet = new Set(completedDatesSet);
 		}
+		dispatch('onValueChange', Array.from(completedDatesSet).sort(sortDateStrings));
 	};
 </script>
 
 <div class="flex flex-row items-center gap-2">
 	<Button on:click={goLeft} variant="outline"><ChevronLeft /></Button>
-	<ToggleGroup.Root type="multiple" variant="outline" bind:value={$toggleGroupValues} onValueChange={onValueChange}>
-		{#each weekDates as d}
-			<ToggleGroup.Item value={format(d, 'yyyy-MM-dd')}>
-				{format(d, 'E')}
-				{format(d, 'MM-dd')}
-			</ToggleGroup.Item>
-		{/each}
-	</ToggleGroup.Root>
+	{#each weekDates as d}
+		<Button variant={completedDatesSet.has(d) ? 'default' : 'outline'} on:click={() => onValueChange(d)}>
+			{format(d, 'E')}
+			{format(d, 'MM-dd')}
+		</Button>
+	{/each}
 	<Button on:click={goRight} variant="outline"><ChevronRight /></Button>
 </div>

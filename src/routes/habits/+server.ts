@@ -25,16 +25,25 @@ export async function GET({ locals: { supabase, session } }) {
 		});
 	}
 
+	// const newData = habits.data.map((d) => ({
+	// 	...d,
+
+	// }))
+
 	// console.log(habits);
 
 	// const res = await supabase
 	// 	.from('habits')
 	// 	.update({
-	// 		data: habits[1].habit_data.sort((a, b) => new Date(a.date) - new Date(b.date)),
+	// 		data: habits[1].data.map((d) => ({
+	// 			date: format(new Date(d.date), 'yyyy-MM-dd'),
+	// 			value: d.value,
+	// 			completed: d.completed,
+	// 		})),
 	// 	})
-	// 	.eq('id', '7e766f8d-050a-4c56-b6b0-0d58dba21b45');
+	// 	.eq('id', 'b2a8fc07-e1c8-4fe9-bdc2-3a11bd6fcdb5');
 
-	// // console.log(res);
+	// console.log(res);
 
 	return json(habits);
 }

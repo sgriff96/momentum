@@ -4,13 +4,26 @@
 	import Settings from 'lucide-svelte/icons/settings';
 	import Habit from '../Habit.svelte';
 	import type { PageData } from './$types';
+	import { getHabitData } from '$lib/getHabitData';
 
 	export let data: PageData;
-	const habitData = data.habit.data;
+	const habitData = getHabitData(data.habit);
+
+	const handleValueChange = async (habitData: string[]) => {
+		console.log(habitData);
+
+		await fetch(`/habits/${data.habit.id}`, {
+			method: 'PUT',
+			body: JSON.stringify({ habitData }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+	};
 </script>
 
 <Button variant="outline"><Settings class="mr-2 h-4 w-4" /> Modify</Button>
-<DatePicker habitData={habitData} />
+<DatePicker habitData={habitData} on:onValueChange={(event) => handleValueChange(event.detail)} />
 
 {#if data.habit}
 	<Habit habit={data.habit} />
