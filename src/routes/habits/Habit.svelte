@@ -26,9 +26,9 @@
 	};
 
 	// populate new data
-	const allDates = populateMissingDates(habitData);
+	$: allDates = populateMissingDates(habitData);
 
-	const data = allDates.reduce((acc: HabitDataWithValue[], d, i) => {
+	$: data = allDates.reduce((acc: HabitDataWithValue[], d, i) => {
 		let value;
 		// y = mx + b
 		// m is the trend, 1, 0 or -1
@@ -61,7 +61,7 @@
 			<Card.Description>{habit.description}</Card.Description>
 		</Card.Header>
 		<Card.Content>
-			<AreaChart data={data} />
+			<AreaChart bind:data={data} />
 		</Card.Content>
 	</a>
 </Card.Root>

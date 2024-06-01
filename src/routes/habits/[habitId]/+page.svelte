@@ -8,6 +8,8 @@
 
 	export let data: PageData;
 
+	$: myHabitData = data.habitData;
+
 	const handleValueChange = async (habitData: HabitData) => {
 		if (habitData.id) {
 			await fetch(`/habits/${data.habit.id}/data`, {
@@ -26,6 +28,7 @@
 				},
 			});
 		}
+		myHabitData = [...myHabitData, habitData];
 	};
 </script>
 
@@ -33,5 +36,5 @@
 <DatePicker habitData={data.habitData} on:onValueChange={(event) => handleValueChange(event.detail)} />
 
 {#if data.habit}
-	<Habit habit={data.habit} habitData={data.habitData} />
+	<Habit habit={data.habit} bind:habitData={myHabitData} />
 {/if}

@@ -5,10 +5,10 @@
 	import { Area, Axis, Chart, Highlight, LinearGradient, RectClipPath, Svg, Tooltip } from 'layerchart';
 	import { MoveRight, TrendingDown, TrendingUp } from 'lucide-svelte';
 	import type { HabitDataWithValue } from '../types/Habit';
-
+	// TODO: add trend back to data
 	export let data: HabitDataWithValue[];
 
-	const newData = data.map((d) => ({
+	$: newData = data.map((d) => ({
 		value: d.value,
 		date: new Date(d.date),
 	}));
