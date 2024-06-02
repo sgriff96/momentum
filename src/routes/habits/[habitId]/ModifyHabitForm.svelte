@@ -7,8 +7,11 @@
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { Textarea } from '$lib/components/ui/textarea';
+	import { Settings } from 'lucide-svelte';
+	import type { IHabit } from '$lib/types/Habit';
 
 	export let data: SuperValidated<Infer<HabitFormSchema>>;
+	export let habit: IHabit;
 	let open = false;
 
 	const onSubmit = () => {
@@ -22,13 +25,25 @@
 	});
 
 	const { form: formData, enhance } = form;
+
+	formData.set({
+		habitName: habit.name,
+		habitDescription: habit.description || undefined,
+	});
 </script>
 
-<Dialog.Root bind:open={open}>
-	<Dialog.Trigger class={buttonVariants({ variant: 'default', size: 'sm' })}>New Habit</Dialog.Trigger>
+<Dialog.Root
+	bind:open={open}
+	onOutsideClick={() => {
+		open = false;
+	}}
+>
+	<Dialog.Trigger class={buttonVariants({ variant: 'default', size: 'sm' })}>
+		<Settings class="mr-1 h-4 w-4" />Modify Habit</Dialog.Trigger
+	>
 	<Dialog.Content>
 		<Dialog.Header>
-			<Dialog.Title>New Habit</Dialog.Title>
+			<Dialog.Title>Modify Habit</Dialog.Title>
 			<form method="POST" use:enhance>
 				<Form.Field form={form} name="habitName">
 					<Form.Control let:attrs>
@@ -44,7 +59,7 @@
 					</Form.Control>
 					<Form.FieldErrors />
 				</Form.Field>
-				<Form.Button on:click={onSubmit}>Submit</Form.Button>
+				<Form.Button on:click={onSubmit}>Save</Form.Button>
 			</form>
 		</Dialog.Header>
 	</Dialog.Content>

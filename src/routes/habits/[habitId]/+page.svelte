@@ -1,10 +1,9 @@
 <script lang="ts">
 	import DatePicker from '$lib/components/DatePicker/DatePicker.svelte';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import Settings from 'lucide-svelte/icons/settings';
+	import type { HabitData } from '$lib/types/Habit';
 	import Habit from '../Habit.svelte';
 	import type { PageData } from './$types';
-	import type { HabitData } from '$lib/types/Habit';
+	import ModifyHabitForm from './ModifyHabitForm.svelte';
 
 	export let data: PageData;
 
@@ -32,7 +31,10 @@
 	};
 </script>
 
-<Button variant="outline"><Settings class="h-4 w-4" /> Modify</Button>
+<div class="flex justify-between">
+	<h1 class="mb-4 text-2xl font-bold">Habits</h1>
+	<ModifyHabitForm data={data.habitForm} habit={data.habit} />
+</div>
 <DatePicker habitData={data.habit.habit_data} on:onValueChange={(event) => handleValueChange(event.detail)} />
 
 {#if data.habit}
