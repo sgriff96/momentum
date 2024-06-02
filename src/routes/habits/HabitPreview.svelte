@@ -4,7 +4,7 @@
 	import type { HabitData, HabitDataWithValue, IHabit } from '$lib/types/Habit';
 	import { differenceInDays } from 'date-fns';
 	import { Checkbox } from '$lib/components/ui/checkbox';
-	import AreaChart from '$lib/charts/AreaChart.svelte';
+	import Sparkline from '$lib/charts/Sparkline.svelte';
 	export let habit: IHabit;
 	export let habitData: HabitData[];
 
@@ -54,7 +54,7 @@
 	}, []);
 </script>
 
-<Card.Root class="overflow-hidden transition-all duration-300 ease-in-out hover:border-primary">
+<Card.Root class="transition-all duration-300 ease-in-out hover:border-primary">
 	<a href={`/habits/${habit.id}`}>
 		<Card.Header class="flex flex-row items-center justify-between">
 			<div>
@@ -64,7 +64,7 @@
 			<Checkbox />
 		</Card.Header>
 		<Card.Content>
-			<AreaChart bind:data={data} />
+			<Sparkline data={data} />
 		</Card.Content>
 	</a>
 </Card.Root>

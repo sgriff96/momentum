@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import Habit from './Habit.svelte';
+	import HabitPreview from './HabitPreview.svelte';
 	import NewHabitForm from './NewHabitForm.svelte';
 
 	export let data: PageData;
@@ -11,8 +11,10 @@
 	<NewHabitForm data={data.habitForm} />
 </div>
 
-{#each data.habits as habit (habit.id)}
-	<div class="mb-4">
-		<Habit habit={habit} habitData={habit.habit_data} />
-	</div>
-{/each}
+<div class="flex flex-row flex-wrap gap-4">
+	{#each data.habits as habit (habit.id)}
+		<div class="min-w-64">
+			<HabitPreview habit={habit} habitData={habit.habit_data} />
+		</div>
+	{/each}
+</div>
