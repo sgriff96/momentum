@@ -55,9 +55,9 @@
 	};
 </script>
 
-<div class="flex w-[57rem] flex-row items-center justify-center gap-2">
-	<Button on:click={goLeft} variant="outline"><ChevronLeft /></Button>
-	<div class="relative flex h-12 flex-[2_2_0%] items-center overflow-hidden">
+<div class="flex w-[53rem] flex-row items-center justify-center gap-2">
+	<Button on:click={goLeft} variant="outline" class="h-12"><ChevronLeft /></Button>
+	<div class="relative flex h-16 flex-[2_2_0%] items-center overflow-hidden">
 		{#key weekDates}
 			<div
 				class="absolute left-0 right-0 top-0 flex h-full flex-row items-center gap-2"
@@ -67,14 +67,19 @@
 				{#each weekDates as d}
 					<Button
 						variant={allDates.get(d)?.completed === true ? 'default' : 'outline'}
+						class="flex h-12 w-24 flex-col"
 						on:click={() => onValueChange(d)}
 					>
-						{format(d, 'E')}
-						{format(d, 'MM-dd')}
+						<div>
+							{format(d, 'E')}
+						</div>
+						<div>
+							{format(d, 'MM-dd')}
+						</div>
 					</Button>
 				{/each}
 			</div>
 		{/key}
 	</div>
-	<Button on:click={goRight} variant="outline"><ChevronRight /></Button>
+	<Button on:click={goRight} variant="outline" class="h-12"><ChevronRight /></Button>
 </div>
