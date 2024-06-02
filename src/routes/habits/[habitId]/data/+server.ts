@@ -2,7 +2,6 @@ import { error } from '@sveltejs/kit';
 
 export async function POST({ params, request, locals: { supabase } }) {
 	const { habitData } = await request.json();
-
 	const { error: postError } = await supabase
 		.from('habit_data')
 		.insert({ date: habitData.date, habit_id: params.habitId, completed: habitData.completed });

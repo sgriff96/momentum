@@ -14,7 +14,7 @@
 		if (d.id) {
 			await fetch(`/habits/${data.habit.id}/data`, {
 				method: 'PUT',
-				body: JSON.stringify({ habitData }),
+				body: JSON.stringify({ habitData: d }),
 				headers: {
 					'Content-Type': 'application/json',
 				},
@@ -22,7 +22,7 @@
 		} else {
 			await fetch(`/habits/${data.habit.id}/data`, {
 				method: 'POST',
-				body: JSON.stringify({ habitData }),
+				body: JSON.stringify({ habitData: d }),
 				headers: {
 					'Content-Type': 'application/json',
 				},

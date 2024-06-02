@@ -4,7 +4,7 @@
 	import * as Card from '$lib/components/ui/card';
 	import type { HabitData, IHabit, HabitDataWithValue } from '$lib/types/Habit';
 	import { differenceInDays } from 'date-fns';
-
+	import { Checkbox } from '$lib/components/ui/checkbox';
 	export let habit: IHabit;
 	export let habitData: HabitData[];
 
@@ -56,9 +56,12 @@
 
 <Card.Root class="overflow-hidden transition-all duration-300 ease-in-out hover:border-primary">
 	<a href={`/habits/${habit.id}`}>
-		<Card.Header>
-			<Card.Title>{habit.name}</Card.Title>
-			<Card.Description>{habit.description}</Card.Description>
+		<Card.Header class="flex flex-row items-center justify-between">
+			<div>
+				<Card.Title class="pb-1">{habit.name}</Card.Title>
+				<Card.Description>{habit.description}</Card.Description>
+			</div>
+			<Checkbox />
 		</Card.Header>
 		<Card.Content>
 			<AreaChart bind:data={data} />
