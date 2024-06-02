@@ -1,4 +1,4 @@
-import type { HabitData, IHabit } from '$lib/types/Habit';
+import type { IHabit } from '$lib/types/Habit';
 import { error, json } from '@sveltejs/kit';
 
 export async function GET({ params, locals: { supabase, session } }) {
@@ -13,7 +13,11 @@ export async function GET({ params, locals: { supabase, session } }) {
 				user_id,
 				is_active,
 				created_at,
-				data
+				habit_data (
+					id,
+					date,
+					completed
+				)
   		`,
 		)
 		.eq('user_id', session?.user.id)
@@ -26,25 +30,25 @@ export async function GET({ params, locals: { supabase, session } }) {
 		});
 	}
 
-	const { data: habitData, error: dataError } = await supabase
-		.from('habit_data')
-		.select(
-			`
-				id,
-				date,
-				completed
-			`,
-		)
-		.eq('user_id', session?.user.id)
-		.eq('habit_id', params.habitId)
-		.order('date', { ascending: true })
-		.returns<HabitData[]>();
+	// const { data: habitData, error: dataError } = await supabase
+	// 	.from('habit_data')
+	// 	.select(
+	// 		`
+	// 			id,
+	// 			date,
+	// 			completed
+	// 		`,
+	// 	)
+	// 	.eq('user_id', session?.user.id)
+	// 	.eq('habit_id', params.habitId)
+	// 	.order('date', { ascending: true })
+	// 	.returns<HabitData[]>();
 
-	if (dataError) {
-		error(Number(dataError.code), {
-			message: dataError.message,
-		});
-	}
+	// if (dataError) {
+	// 	error(Number(dataError.code), {
+	// 		message: dataError.message,
+	// 	});
+	// }
 
 	// habitData.forEach(async (item) => {
 	// 	console.log('item', item);
@@ -58,7 +62,6 @@ export async function GET({ params, locals: { supabase, session } }) {
 
 	return json({
 		habits,
-		habitData,
 	});
 }
 

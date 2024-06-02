@@ -13,7 +13,11 @@ export async function GET({ locals: { supabase, session } }) {
 				user_id,
 				is_active,
 				created_at,
-				data
+				habit_data (
+					id,
+					date,
+					completed
+				)
   		`,
 		)
 		.eq('user_id', session?.user.id)
@@ -24,26 +28,6 @@ export async function GET({ locals: { supabase, session } }) {
 			message: habitError.message,
 		});
 	}
-
-	// const newData = habits.data.map((d) => ({
-	// 	...d,
-
-	// }))
-
-	// console.log(habits);
-
-	// const res = await supabase
-	// 	.from('habits')
-	// 	.update({
-	// 		data: habits[1].data.map((d) => ({
-	// 			date: format(new Date(d.date), 'yyyy-MM-dd'),
-	// 			value: d.value,
-	// 			completed: d.completed,
-	// 		})),
-	// 	})
-	// 	.eq('id', 'b2a8fc07-e1c8-4fe9-bdc2-3a11bd6fcdb5');
-
-	// console.log(res);
 
 	return json(habits);
 }
