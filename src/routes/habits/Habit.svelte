@@ -2,7 +2,7 @@
 	import AreaChart from '$lib/charts/AreaChart.svelte';
 	import { populateMissingDates } from '$lib/components/DatePicker/helpers';
 	import * as Card from '$lib/components/ui/card';
-	import type { HabitData, IHabit, HabitDataWithValue } from '$lib/types/Habit';
+	import type { HabitData, HabitDataWithValue, IHabit } from '$lib/types/Habit';
 	import { differenceInDays } from 'date-fns';
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	export let habit: IHabit;

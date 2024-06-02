@@ -1,6 +1,6 @@
 import { superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import type { PageServerLoad, Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import { habitFormSchema } from './schema';
 import { error, fail } from '@sveltejs/kit';
 

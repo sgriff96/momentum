@@ -3,8 +3,8 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
-	import { habitFormSchema, type HabitFormSchema } from './schema';
-	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
+	import { type HabitFormSchema, habitFormSchema } from './schema';
+	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { Settings } from 'lucide-svelte';
