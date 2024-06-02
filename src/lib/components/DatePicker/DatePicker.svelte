@@ -5,6 +5,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import Button from '../ui/button/button.svelte';
 	import { getWeekDates } from './helpers';
+	import { fly } from 'svelte/transition'; // Import fly transition
 
 	const dispatch = createEventDispatcher();
 
@@ -17,13 +18,16 @@
 	const today = new Date();
 	$: currentWorkingDate = new Date(today);
 	$: weekDates = getWeekDates(currentWorkingDate);
+	let direction = 'left'; // Track the current direction of transition
 
 	const goLeft = () => {
+		direction = 'left';
 		currentWorkingDate = sub(currentWorkingDate, { weeks: 1 });
 		weekDates = getWeekDates(currentWorkingDate);
 	};
 
 	const goRight = () => {
+		direction = 'right';
 		currentWorkingDate = add(currentWorkingDate, { weeks: 1 });
 		weekDates = getWeekDates(currentWorkingDate);
 	};
@@ -51,13 +55,26 @@
 	};
 </script>
 
-<div class="flex flex-row items-center gap-2">
+<div class="flex flex-row items-center gap-2 overflow-hidden">
 	<Button on:click={goLeft} variant="outline"><ChevronLeft /></Button>
-	{#each weekDates as d}
-		<Button variant={allDates.get(d)?.completed === true ? 'default' : 'outline'} on:click={() => onValueChange(d)}>
-			{format(d, 'E')}
-			{format(d, 'MM-dd')}
-		</Button>
-	{/each}
+	<div class="relative flex h-12 flex-1 items-center overflow-hidden">
+		{#key weekDates}
+			<div
+				class="absolute left-0 right-0 top-0 flex h-full flex-1 flex-row items-center gap-2"
+				in:fly={{ x: direction === 'left' ? -500 : 500, duration: 300 }}
+				out:fly={{ x: direction === 'left' ? 500 : -500, duration: 300 }}
+			>
+				{#each weekDates as d}
+					<Button
+						variant={allDates.get(d)?.completed === true ? 'default' : 'outline'}
+						on:click={() => onValueChange(d)}
+					>
+						{format(d, 'E')}
+						{format(d, 'MM-dd')}
+					</Button>
+				{/each}
+			</div>
+		{/key}
+	</div>
 	<Button on:click={goRight} variant="outline"><ChevronRight /></Button>
 </div>
