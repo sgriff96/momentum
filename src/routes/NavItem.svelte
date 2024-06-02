@@ -1,8 +1,11 @@
 <script lang="ts">
-	export let href: string;
+	export let href: string | undefined = undefined;
 </script>
 
-<a href={href} class="group transition duration-300">
+<a
+	href={href}
+	class="pl-2 text-lg font-normal text-muted-foreground transition-colors hover:text-primary"
+	{...$$restProps}
+>
 	<slot />
-	<span class="block h-0.5 max-w-0 bg-primary transition-all duration-300 group-hover:max-w-full"></span>
 </a>

@@ -32,7 +32,7 @@
 </script>
 
 <div class="flex justify-between">
-	<h1 class="mb-4 text-2xl font-bold">Habits</h1>
+	<h1 class="mb-4 text-2xl font-bold">{data.habit.name}</h1>
 	<ModifyHabitForm data={data.habitForm} habit={data.habit} />
 </div>
 <DatePicker habitData={data.habit.habit_data} on:onValueChange={(event) => handleValueChange(event.detail)} />
