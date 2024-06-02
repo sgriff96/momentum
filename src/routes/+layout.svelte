@@ -3,6 +3,7 @@
 	import Sun from 'lucide-svelte/icons/sun';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
+	import { Separator } from '$lib/components/ui/separator';
 
 	import NavItem from './NavItem.svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
@@ -56,8 +57,9 @@
 <div class="mx-auto my-0 max-w-screen-2xl px-[1rem] py-0">
 	<div class="flex flex-row gap-10">
 		<div class="flex min-h-screen w-1/6 flex-col justify-between border-r border-border px-8 py-8">
-			<div class="flex flex-col gap-8">
+			<div class="flex flex-col gap-4">
 				<a href="/habits" class="text-xl font-normal transition-colors hover:text-primary">Momentum</a>
+				<Separator />
 				{#if session?.user}
 					<div class="flex flex-col gap-2">
 						<span class="text-lg font-medium">Habits</span>
