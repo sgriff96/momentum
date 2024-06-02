@@ -16,9 +16,9 @@
 </script>
 
 <CalendarPrimitive.Root
-	bind:value
-	bind:placeholder
-	{weekdayFormat}
+	bind:value={value}
+	bind:placeholder={placeholder}
+	weekdayFormat={weekdayFormat}
 	class={cn('p-3', className)}
 	multiple
 	{...$$restProps}
@@ -47,8 +47,8 @@
 					{#each month.weeks as weekDates}
 						<Calendar.GridRow class="mt-2 w-full">
 							{#each weekDates as date}
-								<Calendar.Cell {date}>
-									<Calendar.Day {date} month={month.value} />
+								<Calendar.Cell date={date}>
+									<Calendar.Day date={date} month={month.value} />
 								</Calendar.Cell>
 							{/each}
 						</Calendar.GridRow>

@@ -9,21 +9,21 @@
 
 	const form = superForm(data, {
 		dataType: 'json',
-		validators: zodClient(formSchema)
+		validators: zodClient(formSchema),
 	});
 
 	const { form: formData, enhance } = form;
 </script>
 
 <form method="POST" use:enhance action="?/login">
-	<Form.Field {form} name="email">
+	<Form.Field form={form} name="email">
 		<Form.Control let:attrs>
 			<Form.Label>Email</Form.Label>
 			<Input {...attrs} bind:value={$formData.email} type="email" />
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>
-	<Form.Field {form} name="password">
+	<Form.Field form={form} name="password">
 		<Form.Control let:attrs>
 			<Form.Label>Password</Form.Label>
 			<Input {...attrs} bind:value={$formData.password} type="password" />
