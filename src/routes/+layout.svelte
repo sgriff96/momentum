@@ -58,7 +58,7 @@
 		<div class="flex min-h-screen w-1/6 flex-col justify-between border-r border-border px-8 py-8">
 			<div class="flex flex-col gap-8">
 				<a href="/habits" class="text-xl font-normal transition-colors hover:text-primary">Momentum</a>
-				{#if session?.user && data.habits}
+				{#if session?.user}
 					<div class="flex flex-col gap-2">
 						<span class="text-lg font-medium">Habits</span>
 
