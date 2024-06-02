@@ -1,7 +1,7 @@
 <script lang="ts">
 	import DatePicker from '$lib/components/DatePicker/DatePicker.svelte';
+	import Habit from '$lib/components/Habit.svelte';
 	import type { HabitData } from '$lib/types/Habit';
-	import Habit from '../Habit.svelte';
 	import type { PageData } from './$types';
 	import ModifyHabitForm from './ModifyHabitForm.svelte';
 
