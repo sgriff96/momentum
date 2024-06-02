@@ -31,5 +31,5 @@
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Login</Form.Button>
-	<Form.Button formaction="?/signup">Sign Up</Form.Button>
+	<Form.Button formaction="?/signup" variant="outline">Sign Up</Form.Button>
 </form>

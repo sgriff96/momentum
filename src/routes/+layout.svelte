@@ -63,7 +63,6 @@
 				{#if session?.user}
 					<div class="flex flex-col gap-2">
 						<span class="text-lg font-medium">Habits</span>
-
 						{#each data.habits as habit}
 							<NavItem href="/habits/{habit.id}">{habit.name}</NavItem>
 						{/each}
