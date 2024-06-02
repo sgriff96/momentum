@@ -8,10 +8,10 @@
 
 	export let data: PageData;
 
-	$: myHabitData = data.habitData;
+	$: habitData = data.habit.habit_data || [];
 
-	const handleValueChange = async (habitData: HabitData) => {
-		if (habitData.id) {
+	const handleValueChange = async (d: HabitData) => {
+		if (d.id) {
 			await fetch(`/habits/${data.habit.id}/data`, {
 				method: 'PUT',
 				body: JSON.stringify({ habitData }),
@@ -28,13 +28,13 @@
 				},
 			});
 		}
-		myHabitData = [...myHabitData, habitData];
+		habitData = [...habitData, d];
 	};
 </script>
 
 <Button variant="outline"><Settings class="h-4 w-4" /> Modify</Button>
-<DatePicker habitData={data.habitData} on:onValueChange={(event) => handleValueChange(event.detail)} />
+<DatePicker habitData={data.habit.habit_data} on:onValueChange={(event) => handleValueChange(event.detail)} />
 
 {#if data.habit}
-	<Habit habit={data.habit} bind:habitData={myHabitData} />
+	<Habit habit={data.habit} bind:habitData={habitData} />
 {/if}

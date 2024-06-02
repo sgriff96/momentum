@@ -22,7 +22,7 @@
 </div>
 
 {#each data.habits as habit (habit.id)}
-	<div class="mb-2">
+	<div class="mb-4">
 		<Habit habit={habit} habitData={habit.habit_data} />
 	</div>
 {/each}
