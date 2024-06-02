@@ -55,12 +55,12 @@
 	};
 </script>
 
-<div class="flex flex-row items-center gap-2 overflow-hidden">
+<div class="flex w-[57rem] flex-row items-center justify-center gap-2">
 	<Button on:click={goLeft} variant="outline"><ChevronLeft /></Button>
-	<div class="relative flex h-12 flex-1 items-center overflow-hidden">
+	<div class="relative flex h-12 flex-[2_2_0%] items-center overflow-hidden">
 		{#key weekDates}
 			<div
-				class="absolute left-0 right-0 top-0 flex h-full flex-1 flex-row items-center gap-2"
+				class="absolute left-0 right-0 top-0 flex h-full flex-row items-center gap-2"
 				in:fly={{ x: direction === 'left' ? -500 : 500, duration: 300 }}
 				out:fly={{ x: direction === 'left' ? 500 : -500, duration: 300 }}
 			>
