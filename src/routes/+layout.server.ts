@@ -29,8 +29,9 @@ const ignoreSupabaseWarnings = () => {
 	};
 };
 
-export const load: LayoutServerLoad = async ({ locals: { session } }) => {
+export const load: LayoutServerLoad = async ({ locals: { session }, fetch, depends }) => {
 	ignoreSupabaseWarnings();
+
 	return {
 		session,
 	};
