@@ -34,8 +34,7 @@
 	let:selected
 	let:disabled
 	let:unavailable
-	let:builder
->
+	let:builder>
 	<slot selected={selected} disabled={disabled} unavailable={unavailable} builder={builder}>
 		{date.day}
 	</slot>

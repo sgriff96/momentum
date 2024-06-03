@@ -4,7 +4,9 @@
 	"trailingComma": "all",
 	"printWidth": 120,
 	"semi": true,
-	"bracketSameLine": false,
+	"bracketSameLine": true,
 	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
-	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte", "svelteAllowShorthand": false } }]
+	"overrides": [
+		{ "files": "*.svelte", "options": { "parser": "svelte", "svelteAllowShorthand": false, "bracketSameLine": true } }
+	]
 }

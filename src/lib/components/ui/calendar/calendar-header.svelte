@@ -10,7 +10,6 @@
 
 <CalendarPrimitive.Header
 	class={cn('relative flex w-full items-center justify-between pt-1', className)}
-	{...$$restProps}
->
+	{...$$restProps}>
 	<slot />
 </CalendarPrimitive.Header>

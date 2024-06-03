@@ -72,8 +72,7 @@
 						<a
 							class="pl-2 text-lg font-normal text-muted-foreground transition-colors hover:text-primary"
 							href="/auth"
-							on:click={logout}>Logout</a
-						>
+							on:click={logout}>Logout</a>
 					</div>
 				{/if}
 			</div>

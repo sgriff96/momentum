@@ -34,5 +34,4 @@
 	on:mouseleave
 	on:paste
 	on:input
-	{...$$restProps}
-></textarea>
+	{...$$restProps}></textarea>

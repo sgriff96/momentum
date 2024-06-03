@@ -30,8 +30,7 @@
 		tooltip={{ mode: 'bisect-x' }}
 		let:width
 		let:height
-		let:tooltip
-	>
+		let:tooltip>
 		<Svg>
 			<LinearGradient class="fill from-primary" vertical let:url>
 				<Area curve={curve} line={{ class: 'stroke-2 stroke-primary opacity-20' }} fill={url} />
@@ -45,16 +44,14 @@
 				format={(d) => format(d, 'MM-dd')}
 				labelProps={{
 					class: 'fill-secondary-foreground',
-				}}
-			/>
+				}} />
 		</Svg>
 
 		<Tooltip
 			xOffset={4}
 			variant="none"
 			class="whitespace-nowrap rounded-md border bg-background px-2 py-1 text-sm leading-3 text-foreground"
-			let:data
-		>
+			let:data>
 			<div class="flex items-center gap-2">
 				{#if data.trend === '0'}
 					<MoveRight class="inline-block h-4 w-4" />

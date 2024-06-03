@@ -25,7 +25,6 @@
 		className,
 	)}
 	value={value}
-	{...$$restProps}
->
+	{...$$restProps}>
 	<slot />
 </ToggleGroupPrimitive.Item>

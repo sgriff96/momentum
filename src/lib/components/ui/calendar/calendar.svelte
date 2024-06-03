@@ -24,8 +24,7 @@
 	{...$$restProps}
 	on:keydown
 	let:months
-	let:weekdays
->
+	let:weekdays>
 	<Calendar.Header>
 		<Calendar.PrevButton />
 		<Calendar.Heading />

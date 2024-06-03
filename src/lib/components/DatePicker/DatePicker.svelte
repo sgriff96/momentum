@@ -62,14 +62,12 @@
 			<div
 				class="absolute left-0 right-0 top-0 flex h-full flex-row items-center gap-2"
 				in:fly={{ x: direction === 'left' ? -500 : 500, duration: 300 }}
-				out:fly={{ x: direction === 'left' ? 500 : -500, duration: 300 }}
-			>
+				out:fly={{ x: direction === 'left' ? 500 : -500, duration: 300 }}>
 				{#each weekDates as d}
 					<Button
 						variant={allDates.get(d)?.completed === true ? 'default' : 'outline'}
 						class="flex h-12 w-24 flex-col"
-						on:click={() => onValueChange(d)}
-					>
+						on:click={() => onValueChange(d)}>
 						<div>
 							{format(d, 'E')}
 						</div>

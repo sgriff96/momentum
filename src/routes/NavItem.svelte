@@ -5,7 +5,6 @@
 <a
 	href={href}
 	class="pl-2 text-lg font-normal text-muted-foreground transition-colors hover:text-primary"
-	{...$$restProps}
->
+	{...$$restProps}>
 	<slot />
 </a>

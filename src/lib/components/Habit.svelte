@@ -1,11 +1,11 @@
 <script lang="ts">
+	import AreaChart from '$lib/charts/AreaChart.svelte';
+	import Sparkline from '$lib/charts/Sparkline.svelte';
 	import { populateMissingDates } from '$lib/components/DatePicker/helpers';
 	import * as Card from '$lib/components/ui/card';
+	import { Checkbox } from '$lib/components/ui/checkbox';
 	import type { HabitData, HabitDataWithValue, IHabit } from '$lib/types/Habit';
 	import { differenceInDays } from 'date-fns';
-	import { Checkbox } from '$lib/components/ui/checkbox';
-	import Sparkline from '$lib/charts/Sparkline.svelte';
-	import AreaChart from '$lib/charts/AreaChart.svelte';
 
 	export let habit: IHabit;
 	export let habitData: HabitData[];
@@ -58,20 +58,19 @@
 </script>
 
 <Card.Root class="transition-all duration-300 ease-in-out hover:border-primary">
-	<a href={`/habits/${habit.id}`}>
-		<Card.Header class="flex flex-row items-center justify-between">
-			<div>
-				<Card.Title class="pb-1">{habit.name}</Card.Title>
-				<Card.Description>{habit.description}</Card.Description>
-			</div>
-			<Checkbox />
-		</Card.Header>
-		<Card.Content>
-			{#if preview === true}
-				<Sparkline data={data} />
-			{:else}
-				<AreaChart data={data} />
-			{/if}
-		</Card.Content>
-	</a>
+	<Card.Header class="flex flex-row items-center justify-between">
+		<div>
+			<Card.Title class="flex flex-row items-center gap-2 pb-1">
+				<Checkbox /><a href={`/habits/${habit.id}`}>{habit.name}</a>
+			</Card.Title>
+			<Card.Description>{habit.description}</Card.Description>
+		</div>
+	</Card.Header>
+	<Card.Content>
+		{#if preview === true}
+			<Sparkline data={data} />
+		{:else}
+			<AreaChart data={data} />
+		{/if}
+	</Card.Content>
 </Card.Root>

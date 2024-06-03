@@ -19,8 +19,7 @@
 		className,
 	)}
 	{...$$restProps}
-	let:builder
->
+	let:builder>
 	<slot builder={builder}>
 		<ChevronLeft class="h-4 w-4" />
 	</slot>

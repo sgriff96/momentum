@@ -20,7 +20,6 @@
 	bind:pressed={pressed}
 	class={cn(toggleVariants({ variant, size, className }))}
 	{...$$restProps}
-	on:click
->
+	on:click>
 	<slot />
 </TogglePrimitive.Root>

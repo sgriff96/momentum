@@ -36,11 +36,9 @@
 	bind:open={open}
 	onOutsideClick={() => {
 		open = false;
-	}}
->
+	}}>
 	<Dialog.Trigger class={buttonVariants({ variant: 'default', size: 'sm' })}>
-		<Settings class="mr-1 h-4 w-4" />Modify Habit</Dialog.Trigger
-	>
+		<Settings class="mr-1 h-4 w-4" />Modify Habit</Dialog.Trigger>
 	<Dialog.Content>
 		<Dialog.Header>
 			<Dialog.Title>Modify Habit</Dialog.Title>
