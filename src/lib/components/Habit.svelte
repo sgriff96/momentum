@@ -13,15 +13,15 @@
 
 	const getTrend = (data: HabitDataWithValue[], i: number) => {
 		let trend = 0;
-		if (data[i - 1].completed === true) {
+		if (data[i - 1]?.completed === true) {
 			trend = 1;
 		}
 
-		if (data[i - 1].completed === false && data[i - 2].completed === true) {
+		if (data[i - 1]?.completed === false && data[i - 2]?.completed === true) {
 			trend = 0;
 		}
 
-		if (data[i - 1].completed === false && data[i - 2].completed === false) {
+		if (data[i - 1]?.completed === false && data[i - 2]?.completed === false) {
 			trend = -1;
 		}
 
