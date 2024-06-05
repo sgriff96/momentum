@@ -87,7 +87,4 @@
 			<ToggleGroup.Item value="italic">italic</ToggleGroup.Item>
 		</ToggleGroup.Root>
 	</Card.Footer>
-	<Card.Actions>
-		{habitData.length} entries
-	</Card.Actions>
 </Card.Root>
