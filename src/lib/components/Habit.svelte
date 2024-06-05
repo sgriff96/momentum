@@ -6,6 +6,7 @@
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	import type { HabitData, HabitDataWithValue, IHabit } from '$lib/types/Habit';
 	import { differenceInDays } from 'date-fns';
+	import { ToggleGroup } from 'bits-ui';
 
 	export let habit: IHabit;
 	export let habitData: HabitData[];
@@ -55,13 +56,16 @@
 		});
 		return acc;
 	}, []);
+
+	let value: string;
 </script>
 
-<Card.Root class="transition-all duration-300 ease-in-out hover:border-primary">
+<Card.Root>
 	<Card.Header class="flex flex-row items-center justify-between">
 		<div>
 			<Card.Title class="flex flex-row items-center gap-2 pb-1">
-				<Checkbox /><a href={`/habits/${habit.id}`}>{habit.name}</a>
+				<Checkbox />
+				<a href={`/habits/${habit.id}`}>{habit.name}</a>
 			</Card.Title>
 			<Card.Description>{habit.description}</Card.Description>
 		</div>
@@ -73,4 +77,17 @@
 			<AreaChart data={data} />
 		{/if}
 	</Card.Content>
+	<Card.Footer>
+		<ToggleGroup.Root bind:value={value} class="flex justify-stretch">
+			<ToggleGroup.Item
+				value="bold"
+				class="rounded-9px bg-background-alt active:scale-98 active:bg-dark-10 data-[state=off]:text-foreground-alt active:data-[state=on]:bg-dark-10 inline-flex size-10 items-center justify-center transition-all hover:bg-muted data-[state=on]:bg-muted data-[state=on]:text-foreground">
+				bold
+			</ToggleGroup.Item>
+			<ToggleGroup.Item value="italic">italic</ToggleGroup.Item>
+		</ToggleGroup.Root>
+	</Card.Footer>
+	<Card.Actions>
+		{habitData.length} entries
+	</Card.Actions>
 </Card.Root>
