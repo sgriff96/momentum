@@ -7,6 +7,7 @@
 	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { Textarea } from '$lib/components/ui/textarea';
+	import { Plus } from 'lucide-svelte';
 
 	export let data: SuperValidated<Infer<HabitFormSchema>>;
 	let open = false;
@@ -25,7 +26,10 @@
 </script>
 
 <Dialog.Root bind:open={open}>
-	<Dialog.Trigger class={buttonVariants({ variant: 'default', size: 'sm' })}>New Habit</Dialog.Trigger>
+	<Dialog.Trigger class={buttonVariants({ variant: 'secondary', size: 'sm' })}>
+		<Plus class="h-4 w-4" />
+		<span>New Habit</span>
+	</Dialog.Trigger>
 	<Dialog.Content>
 		<Dialog.Header>
 			<Dialog.Title>New Habit</Dialog.Title>
