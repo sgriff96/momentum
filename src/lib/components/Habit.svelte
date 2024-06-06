@@ -58,8 +58,6 @@
 		});
 		return acc;
 	}, []);
-
-	let value: string;
 </script>
 
 <Card.Root>
