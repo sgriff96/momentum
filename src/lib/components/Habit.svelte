@@ -3,10 +3,8 @@
 	import Sparkline from '$lib/charts/Sparkline.svelte';
 	import { populateMissingDates } from '$lib/components/DatePicker/helpers';
 	import * as Card from '$lib/components/ui/card';
-	import { Checkbox } from '$lib/components/ui/checkbox';
 	import type { HabitData, HabitDataWithValue, IHabit } from '$lib/types/Habit';
 	import { differenceInDays } from 'date-fns';
-	import { Toggle } from '$lib/components/ui/toggle';
 
 	export let habit: IHabit;
 	export let habitData: HabitData[];
@@ -50,6 +48,10 @@
 			value = m * x + b;
 		}
 
+		if (value < 0) {
+			value = 0;
+		}
+
 		acc.push({
 			...d,
 			value,
@@ -72,10 +74,12 @@
 		<Card.Description>{habit.description}</Card.Description>
 	</Card.Subheader>
 	<Card.Content>
-		{#if preview === true}
-			<Sparkline data={data} />
-		{:else}
-			<AreaChart data={data} />
-		{/if}
+		<div class="pb-4">
+			{#if preview === true}
+				<Sparkline data={data} />
+			{:else}
+				<AreaChart data={data} />
+			{/if}
+		</div>
 	</Card.Content>
 </Card.Root>
