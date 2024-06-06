@@ -35,7 +35,8 @@
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger class={buttonVariants({ variant: 'outline', size: 'sm' })}>
-		<Settings class="mr-1 h-4 w-4" />Settings</DropdownMenu.Trigger>
+		<Settings class="mr-1 h-4 w-4" />Settings
+	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Habit</DropdownMenu.Label>
