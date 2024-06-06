@@ -81,6 +81,9 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+	html {
+		@apply font-body;
+	}
 
 	button {
 		@apply gap-2 font-semibold no-underline duration-200 ease-out;
