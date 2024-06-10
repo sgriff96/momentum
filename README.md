@@ -2,6 +2,8 @@
 
 A habit tracker that doesn't stress you out with streaks
 
+The primary motivation behind this application is learning SvelteKit and Svelte.
+
 ## Developing
 
 ```bash
@@ -14,7 +16,7 @@ npm run dev
 ### Generating supabase types
 
 ```bash
-npx supabase gen types typescript --project-id "izkolwgbaukbhqyzdvro" --schema public > src/lib/types/supabase.ts
+npx supabase gen types typescript --project-id "projectId" --schema public > src/lib/types/supabase.ts
 ```
 
 ## Building
