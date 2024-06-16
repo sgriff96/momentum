@@ -5,13 +5,11 @@
 	export let data: PageData;
 </script>
 
-<div class="flex justify-center">
-	<Card.Root class="w-6/12">
-		<Card.Header>
-			<Card.Title>Login</Card.Title>
-		</Card.Header>
-		<Card.Content>
-			<LoginForm data={data.form} />
-		</Card.Content>
-	</Card.Root>
-</div>
+<Card.Root class="sm: w-full md:w-6/12">
+	<Card.Header>
+		<Card.Title>Login</Card.Title>
+	</Card.Header>
+	<Card.Content>
+		<LoginForm data={data.form} />
+	</Card.Content>
+</Card.Root>
