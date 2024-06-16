@@ -14,5 +14,5 @@ export const load: PageLoad = async ({ fetch, params, depends, data }) => {
 		});
 	}
 
-	return { habit: habits.habits[0], habitForm: data.habitForm };
+	return { habit: habits.habits[0], editHabitForm: data.editHabitForm };
 };

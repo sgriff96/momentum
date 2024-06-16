@@ -17,6 +17,7 @@
 
 	const onSubmit = () => {
 		if (data.valid) {
+			// TODO: for some reason getting back a new data object with empty properties and valid === false so its never closing modal
 			open = false;
 		}
 	};
@@ -61,7 +62,7 @@
 	<Dialog.Content>
 		<Dialog.Header>
 			<Dialog.Title>Edit Habit</Dialog.Title>
-			<form method="POST" use:enhance>
+			<form method="POST" action="?/edit" use:enhance>
 				<Form.Field form={form} name="habitName">
 					<Form.Control let:attrs>
 						<Form.Label>Habit Name</Form.Label>

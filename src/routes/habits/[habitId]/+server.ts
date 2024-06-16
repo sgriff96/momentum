@@ -34,17 +34,3 @@ export async function GET({ params, locals: { supabase, session } }) {
 		habits,
 	});
 }
-
-export async function PUT({ params, request, locals: { supabase } }) {
-	const { habitData } = await request.json();
-
-	const { error: putError } = await supabase.from('habits').update({ data: habitData }).eq('id', params.habitId);
-
-	if (putError) {
-		return error(Number(putError.code), {
-			message: putError.message,
-		});
-	}
-
-	return new Response(null, { status: 204 });
-}

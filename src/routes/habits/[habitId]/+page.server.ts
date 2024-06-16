@@ -6,12 +6,12 @@ import { error, fail } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async () => {
 	return {
-		habitForm: await superValidate(zod(habitFormSchema)),
+		editHabitForm: await superValidate(zod(habitFormSchema)),
 	};
 };
 
 export const actions: Actions = {
-	default: async (event) => {
+	edit: async (event) => {
 		const form = await superValidate(event, zod(habitFormSchema));
 		if (!form.valid) {
 			return fail(400, {

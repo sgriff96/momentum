@@ -34,7 +34,7 @@
 <div class="flex flex-col gap-2">
 	<div class="flex justify-between">
 		<h1 class="text-2xl font-bold">{data.habit.name}</h1>
-		<HabitSettings data={data.habitForm} habit={data.habit} />
+		<HabitSettings data={data.editHabitForm} habit={data.habit} />
 	</div>
 
 	<DatePicker habitData={data.habit.habit_data} on:onValueChange={(event) => handleValueChange(event.detail)} />
