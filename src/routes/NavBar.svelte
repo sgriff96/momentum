@@ -49,19 +49,19 @@
 </script>
 
 <div
-	class="flex flex-row items-center justify-between bg-card p-4 md:min-h-screen md:w-1/6 md:flex-col md:border-r md:border-border md:p-8">
-	<div class="md:flex md:flex-col md:gap-4">
+	class="flex flex-row items-center justify-between p-4 md:h-screen md:w-1/6 md:flex-col md:border-r md:border-border md:p-8">
+	<div class="md:flex md:flex-col md:gap-2">
 		<a href="/habits" class="text-xl font-normal transition-colors hover:text-primary">Momentum</a>
 		<Separator class="hidden md:flex" />
 		{#if session?.user}
-			<div class="hidden md:flex md:flex-col md:gap-2">
-				<span class="text-lg font-medium">Habits</span>
+			<div class="hidden md:flex md:flex-col md:gap-1">
+				<NavItem href="/habits" variant="header">Habits</NavItem>
 				{#each data.habits as habit}
 					<NavItem href="/habits/{habit.id}">{habit.name}</NavItem>
 				{/each}
 			</div>
-			<div class="hidden md:flex md:flex-col md:gap-2">
-				<span class="text-lg font-medium">Account</span>
+			<div class="hidden md:flex md:flex-col md:gap-1">
+				<NavItem variant="header">Account</NavItem>
 				<NavItem href="/auth" onClick={logout}>Logout</NavItem>
 			</div>
 		{/if}
