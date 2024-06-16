@@ -3,7 +3,7 @@
 	import Habit from '$lib/components/Habit.svelte';
 	import type { HabitData } from '$lib/types/Habit';
 	import type { PageData } from './$types';
-	import ModifyHabitForm from './ModifyHabitForm.svelte';
+	import HabitSettings from './HabitSettings.svelte';
 
 	export let data: PageData;
 
@@ -31,12 +31,15 @@
 	};
 </script>
 
-<div class="flex justify-between">
-	<h1 class="mb-4 text-2xl font-bold">{data.habit.name}</h1>
-	<ModifyHabitForm data={data.habitForm} habit={data.habit} />
-</div>
-<DatePicker habitData={data.habit.habit_data} on:onValueChange={(event) => handleValueChange(event.detail)} />
+<div class="flex flex-col gap-2">
+	<div class="flex justify-between">
+		<h1 class="text-2xl font-bold">{data.habit.name}</h1>
+		<HabitSettings data={data.habitForm} habit={data.habit} />
+	</div>
 
-{#if data.habit}
-	<Habit habit={data.habit} bind:habitData={habitData} />
-{/if}
+	<DatePicker habitData={data.habit.habit_data} on:onValueChange={(event) => handleValueChange(event.detail)} />
+
+	{#if data.habit}
+		<Habit habit={data.habit} bind:habitData={habitData} />
+	{/if}
+</div>

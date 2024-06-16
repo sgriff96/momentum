@@ -61,8 +61,8 @@
 </script>
 
 <Card.Root>
-	<a href={`/habits/${habit.id}`}>
-		<Card.Header class="rounded-t-lg transition-colors hover:bg-primary/80">
+	<a href={`/habits/${habit.id}`} class={preview ? '' : 'pointer-events-none'}>
+		<Card.Header class="rounded-t-lg transition-colors {preview ? 'hover:bg-primary/80' : ''}">
 			<Card.Title>
 				{habit.name}
 			</Card.Title>
