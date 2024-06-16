@@ -26,7 +26,7 @@
 </script>
 
 <Dialog.Root bind:open={open}>
-	<Dialog.Trigger class={buttonVariants({ variant: 'secondary', size: 'sm' })}>
+	<Dialog.Trigger class={buttonVariants({ variant: 'default', size: 'sm' })}>
 		<Plus class="h-4 w-4" />
 		<span>New Habit</span>
 	</Dialog.Trigger>
