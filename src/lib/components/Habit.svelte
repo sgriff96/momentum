@@ -62,7 +62,7 @@
 
 <Card.Root>
 	<a href={`/habits/${habit.id}`}>
-		<Card.Header class="hover:bg-card/95">
+		<Card.Header class="rounded-t-lg transition-colors hover:bg-primary/80">
 			<Card.Title>
 				{habit.name}
 			</Card.Title>
