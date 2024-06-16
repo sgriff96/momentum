@@ -10,10 +10,12 @@
 	import { FilePenLine, Settings, Trash2 } from 'lucide-svelte';
 	import type { IHabit } from '$lib/types/Habit';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
+	import Button from '$lib/components/ui/button/button.svelte';
 
 	export let data: SuperValidated<Infer<HabitFormSchema>>;
 	export let habit: IHabit;
 	let open = false;
+	let deleteOpen = false;
 
 	const onSubmit = () => {
 		if (data.valid) {
@@ -32,6 +34,8 @@
 		habitName: habit.name,
 		habitDescription: habit.description || undefined,
 	});
+
+	const onDelete = () => (deleteOpen = false);
 </script>
 
 <DropdownMenu.Root>
@@ -46,7 +50,7 @@
 				<FilePenLine class="mr-2 h-4 w-4" />
 				<span>Edit</span>
 			</DropdownMenu.Item>
-			<DropdownMenu.Item>
+			<DropdownMenu.Item on:click={() => (deleteOpen = true)}>
 				<Trash2 class="mr-2 h-4 w-4 text-destructive hover:text-destructive" />
 				<span class="text-destructive hover:text-destructive">Delete</span>
 			</DropdownMenu.Item>
@@ -78,6 +82,23 @@
 					<Form.FieldErrors />
 				</Form.Field>
 				<Form.Button on:click={onSubmit}>Save</Form.Button>
+			</form>
+		</Dialog.Header>
+	</Dialog.Content>
+</Dialog.Root>
+
+<Dialog.Root
+	bind:open={deleteOpen}
+	onOutsideClick={() => {
+		deleteOpen = false;
+	}}>
+	<Dialog.Content>
+		<Dialog.Header>
+			<Dialog.Title>Delete Habit</Dialog.Title>
+			<p class="pb-2">Are you sure you want to delete this habit?</p>
+			<form method="POST" action="?/delete" use:enhance>
+				<Button variant="outline" on:click={() => (deleteOpen = false)}>Cancel</Button>
+				<Form.Button variant="destructive" on:click={onDelete}>Delete</Form.Button>
 			</form>
 		</Dialog.Header>
 	</Dialog.Content>

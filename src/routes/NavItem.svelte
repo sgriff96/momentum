@@ -8,8 +8,6 @@
 	$: isActive = $page.url.pathname === href;
 
 	const headerClasses = 'text-lg font-medium text-primary-foreground pl-2';
-
-	console.log(href, $page.url.pathname);
 </script>
 
 <a
