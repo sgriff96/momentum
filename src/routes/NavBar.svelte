@@ -62,12 +62,7 @@
 			</div>
 			<div class="hidden md:flex md:flex-col md:gap-2">
 				<span class="text-lg font-medium">Account</span>
-				<a
-					class="pl-2 text-lg font-normal text-muted-foreground transition-colors hover:text-primary"
-					href="/auth"
-					on:click={logout}>
-					Logout
-				</a>
+				<NavItem href="/auth" onClick={logout}>Logout</NavItem>
 			</div>
 		{/if}
 	</div>
