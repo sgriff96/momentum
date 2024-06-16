@@ -5,7 +5,7 @@
 	export let data: PageData;
 </script>
 
-<Card.Root class="sm: w-full md:w-6/12">
+<Card.Root>
 	<Card.Header>
 		<Card.Title>Login</Card.Title>
 	</Card.Header>

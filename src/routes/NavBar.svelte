@@ -49,7 +49,7 @@
 </script>
 
 <div
-	class="flex flex-row items-center justify-between p-8 md:min-h-screen md:w-1/6 md:flex-col md:border-r md:border-border">
+	class="flex flex-row items-center justify-between bg-card p-4 md:min-h-screen md:w-1/6 md:flex-col md:border-r md:border-border md:p-8">
 	<div class="md:flex md:flex-col md:gap-4">
 		<a href="/habits" class="text-xl font-normal transition-colors hover:text-primary">Momentum</a>
 		<Separator class="hidden md:flex" />
@@ -72,37 +72,40 @@
 		{/if}
 	</div>
 	<div class="flex flex-row items-center gap-4">
-		<div class="md:hidden">
-			<DropdownMenu.Root>
-				<DropdownMenu.Trigger><Menu class="h-8 w-8" /></DropdownMenu.Trigger>
-				<DropdownMenu.Content class="w-56">
-					<DropdownMenu.Group>
-						<DropdownMenu.Label>Habits</DropdownMenu.Label>
+		{#if session?.user}
+			<div class="md:hidden">
+				<DropdownMenu.Root>
+					<DropdownMenu.Trigger><Menu class="h-8 w-8" /></DropdownMenu.Trigger>
+					<DropdownMenu.Content class="w-56">
+						<DropdownMenu.Group>
+							<DropdownMenu.Label>Habits</DropdownMenu.Label>
+							<DropdownMenu.Separator />
+							{#each data.habits as habit}
+								<DropdownMenu.Item href="/habits/{habit.id}">{habit.name}</DropdownMenu.Item>
+							{/each}
+						</DropdownMenu.Group>
 						<DropdownMenu.Separator />
-						{#each data.habits as habit}
-							<DropdownMenu.Item href="/habits/{habit.id}">{habit.name}</DropdownMenu.Item>
-						{/each}
-					</DropdownMenu.Group>
-					<DropdownMenu.Separator />
-					<DropdownMenu.Group>
-						<DropdownMenu.Label>My Account</DropdownMenu.Label>
-						<DropdownMenu.Separator />
-						<DropdownMenu.Item>
-							<User class="mr-2 h-4 w-4" />
-							<span>Profile</span>
-						</DropdownMenu.Item>
-						<DropdownMenu.Item>
-							<Settings class="mr-2 h-4 w-4" />
-							<span>Settings</span>
-						</DropdownMenu.Item>
-						<DropdownMenu.Item href="/auth" on:click={logout}>
-							<LogOut class="mr-2 h-4 w-4" />
-							<span>Log out</span>
-						</DropdownMenu.Item>
-					</DropdownMenu.Group>
-				</DropdownMenu.Content>
-			</DropdownMenu.Root>
-		</div>
+						<DropdownMenu.Group>
+							<DropdownMenu.Label>My Account</DropdownMenu.Label>
+							<DropdownMenu.Separator />
+							<DropdownMenu.Item>
+								<User class="mr-2 h-4 w-4" />
+								<span>Profile</span>
+							</DropdownMenu.Item>
+							<DropdownMenu.Item>
+								<Settings class="mr-2 h-4 w-4" />
+								<span>Settings</span>
+							</DropdownMenu.Item>
+							<DropdownMenu.Item href="/auth" on:click={logout}>
+								<LogOut class="mr-2 h-4 w-4" />
+								<span>Log out</span>
+							</DropdownMenu.Item>
+						</DropdownMenu.Group>
+					</DropdownMenu.Content>
+				</DropdownMenu.Root>
+			</div>
+		{/if}
+
 		<Button on:click={toggleMode} variant="outline" size="icon">
 			<Sun class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
 			<Moon class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
