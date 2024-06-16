@@ -21,15 +21,17 @@ export const actions: Actions = {
 
 		const { habitName, habitDescription } = form.data;
 
-		const { error: insertError } = await event.locals.supabase.from('habits').insert({
-			name: habitName,
-			description: habitDescription,
-			created_at: new Date(),
-		});
+		const { error: updateError } = await event.locals.supabase
+			.from('habits')
+			.update({
+				name: habitName,
+				description: habitDescription,
+			})
+			.eq('id', event.params.habitId);
 
-		if (insertError) {
-			return error(Number(insertError.code), {
-				message: insertError.message,
+		if (updateError) {
+			return error(Number(updateError.code), {
+				message: updateError.message,
 			});
 		}
 	},
