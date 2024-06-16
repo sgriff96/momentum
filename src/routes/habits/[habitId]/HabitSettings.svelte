@@ -95,11 +95,13 @@
 	<Dialog.Content>
 		<Dialog.Header>
 			<Dialog.Title>Delete Habit</Dialog.Title>
-			<p class="pb-2">Are you sure you want to delete this habit?</p>
-			<form method="POST" action="?/delete" use:enhance>
-				<Button variant="outline" on:click={() => (deleteOpen = false)}>Cancel</Button>
-				<Form.Button variant="destructive" on:click={onDelete}>Delete</Form.Button>
-			</form>
+			<p class="py-2">Are you sure you want to delete this habit?</p>
+			<Dialog.Footer>
+				<form method="POST" action="?/delete" use:enhance>
+					<Button variant="outline" on:click={() => (deleteOpen = false)}>Cancel</Button>
+					<Form.Button variant="destructive" on:click={onDelete}>Delete</Form.Button>
+				</form>
+			</Dialog.Footer>
 		</Dialog.Header>
 	</Dialog.Content>
 </Dialog.Root>
