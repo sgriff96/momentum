@@ -51,7 +51,11 @@
 <div
 	class="flex flex-row items-center justify-between p-4 md:h-screen md:w-1/6 md:flex-col md:border-r md:border-border md:p-8">
 	<div class="md:flex md:flex-col md:gap-2">
-		<a href="/habits" class="text-xl font-normal transition-colors hover:text-primary">Momentum</a>
+		<a
+			href="/habits"
+			class="inline-block bg-gradient-to-r from-indigo-500 to-indigo-300 bg-clip-text text-2xl font-bold italic text-transparent transition-colors hover:text-primary">
+			Momentum
+		</a>
 		<Separator class="hidden md:flex" />
 		{#if session?.user}
 			<div class="hidden md:flex md:flex-col md:gap-1">

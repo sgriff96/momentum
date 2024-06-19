@@ -60,24 +60,22 @@
 	}, []);
 </script>
 
-<Card.Root>
-	<a href={`/habits/${habit.id}`} class={preview ? '' : 'pointer-events-none'}>
-		<Card.Header class="rounded-t-lg transition-colors {preview ? 'hover:bg-primary/80' : ''}">
+<a href={`/habits/${habit.id}`} class={preview ? '' : 'pointer-events-none'}>
+	<Card.Root class="transition-colors {preview ? 'hover:bg-primary/20' : ''}">
+		<Card.Header>
 			<Card.Title>
 				{habit.name}
 			</Card.Title>
+			<Card.Description>{habit.description}</Card.Description>
 		</Card.Header>
-	</a>
-	<Card.Subheader>
-		<Card.Description>{habit.description}</Card.Description>
-	</Card.Subheader>
-	<Card.Content>
-		<div class="pb-4">
-			{#if preview === true}
-				<Sparkline data={data} />
-			{:else}
-				<AreaChart data={data} />
-			{/if}
-		</div>
-	</Card.Content>
-</Card.Root>
+		<Card.Content>
+			<div class="pb-4">
+				{#if preview === true}
+					<Sparkline data={data} />
+				{:else}
+					<AreaChart data={data} />
+				{/if}
+			</div>
+		</Card.Content>
+	</Card.Root>
+</a>

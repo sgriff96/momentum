@@ -13,7 +13,7 @@
 <a
 	href={href}
 	on:click={onClick}
-	class="text-md rounded-md py-1 font-normal text-muted-foreground transition-colors hover:bg-primary/80 hover:text-primary-foreground {isActive
+	class="text-md rounded-md py-1 font-normal text-muted-foreground transition-colors hover:bg-primary/30 hover:text-primary-foreground {isActive
 		? 'bg-primary text-primary-foreground'
 		: ''} {variant === 'header' ? headerClasses : 'px-4'}"
 	{...$$restProps}>
