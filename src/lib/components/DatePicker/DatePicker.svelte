@@ -5,7 +5,9 @@
 	import { createEventDispatcher } from 'svelte';
 	import Button from '../ui/button/button.svelte';
 	import { getWeekDates } from './helpers';
-	import { fly } from 'svelte/transition'; // Import fly transition
+	import { fly } from 'svelte/transition';
+
+	// TODO: refactor all of this to work better with smaller screen sizes, maybe can use more css
 
 	const dispatch = createEventDispatcher();
 
