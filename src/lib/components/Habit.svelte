@@ -2,9 +2,9 @@
 	import AreaChart from '$lib/charts/AreaChart.svelte';
 	import Sparkline from '$lib/charts/Sparkline.svelte';
 	import { populateMissingDates } from '$lib/components/DatePicker/helpers';
-	import * as Card from '$lib/components/ui/card';
 	import type { HabitData, HabitDataWithValue, IHabit } from '$lib/types/Habit';
 	import { differenceInDays } from 'date-fns';
+	import HabitCard from './HabitCard.svelte';
 
 	export let habit: IHabit;
 	export let habitData: HabitData[];
@@ -32,10 +32,7 @@
 
 	$: data = allDates.reduce((acc: HabitDataWithValue[], d, i) => {
 		let value;
-		// y = mx + b
-		// m is the trend, 1, 0 or -1
-		// b is y(n-1), the previous value (?)
-		// x is the amount of days since starting the habit
+		// TODO: fix calculation since it isn't quite right
 		let m = 0;
 
 		if (i === 0 && d.completed === true) {
@@ -60,22 +57,14 @@
 	}, []);
 </script>
 
-<a href={`/habits/${habit.id}`} class={preview ? '' : 'pointer-events-none'}>
-	<Card.Root class="transition-colors {preview ? 'hover:bg-primary/20' : ''}">
-		<Card.Header>
-			<Card.Title>
-				{habit.name}
-			</Card.Title>
-			<Card.Description>{habit.description}</Card.Description>
-		</Card.Header>
-		<Card.Content>
-			<div class="pb-4">
-				{#if preview === true}
-					<Sparkline data={data} />
-				{:else}
-					<AreaChart data={data} />
-				{/if}
-			</div>
-		</Card.Content>
-	</Card.Root>
-</a>
+{#if preview === true}
+	<a href={`/habits/${habit.id}`}>
+		<HabitCard habit={habit} preview={preview}>
+			<Sparkline bind:data={data} />
+		</HabitCard>
+	</a>
+{:else}
+	<HabitCard habit={habit} preview={preview}>
+		<AreaChart bind:data={data} />
+	</HabitCard>
+{/if}
