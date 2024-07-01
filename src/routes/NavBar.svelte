@@ -5,7 +5,7 @@
 	import { Separator } from '$lib/components/ui/separator';
 	import NavItem from './NavItem.svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { toggleMode } from 'mode-watcher';
+	import { toggleMode, mode } from 'mode-watcher';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import type { LayoutData } from './$types';
 	import { goto, invalidate } from '$app/navigation';
@@ -53,18 +53,18 @@
 	<div class="md:flex md:flex-col md:gap-2">
 		<a
 			href="/habits"
-			class="inline-block bg-gradient-to-r from-indigo-500 to-indigo-300 bg-clip-text text-2xl font-bold italic text-transparent transition-colors hover:text-primary">
+			class="inline-block bg-gradient-to-r from-violet-500 to-indigo-300 bg-clip-text text-2xl font-bold italic text-transparent transition-colors hover:text-primary">
 			Momentum
 		</a>
 		<Separator class="hidden md:flex" />
 		{#if session?.user}
-			<div class="hidden md:flex md:flex-col md:gap-1">
+			<div class="hidden md:flex md:flex-col md:gap-2">
 				<NavItem href="/habits" variant="header">Habits</NavItem>
 				{#each data.habits as habit}
 					<NavItem href="/habits/{habit.id}">{habit.name}</NavItem>
 				{/each}
 			</div>
-			<div class="hidden md:flex md:flex-col md:gap-1">
+			<div class="hidden md:flex md:flex-col md:gap-2">
 				<NavItem variant="header">Account</NavItem>
 				<NavItem href="/auth" onClick={logout}>Logout</NavItem>
 			</div>
@@ -105,10 +105,13 @@
 			</div>
 		{/if}
 
-		<Button on:click={toggleMode} variant="outline" size="icon">
-			<Sun class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-			<Moon class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-			<span class="sr-only">Toggle theme</span>
+		<Button on:click={toggleMode} variant="outline">
+			{#if $mode === 'light'}
+				<Moon class="h-[1.2rem] w-[1.2rem]" />
+			{:else}
+				<Sun class="h-[1.2rem] w-[1.2rem]" />
+			{/if}
+			Toggle Theme
 		</Button>
 	</div>
 </div>

@@ -6,8 +6,8 @@
 	export let data: PageData;
 </script>
 
-<div class="flex flex-row items-center justify-between">
-	<h1 class="mb-4 text-2xl font-bold">Habits</h1>
+<div class="mb-4 flex flex-row items-center justify-between">
+	<h1 class="text-2xl font-bold">Habits</h1>
 	<NewHabitForm data={data.habitForm} />
 </div>
 
