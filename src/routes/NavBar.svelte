@@ -60,8 +60,8 @@
 				{/each}
 			</div>
 			<div class="hidden md:flex md:flex-col md:gap-2">
-				<NavItem variant="header">Account</NavItem>
-				<NavItem>Settings</NavItem>
+				<NavItem variant="header">My Account</NavItem>
+				<NavItem href="/settings">Settings</NavItem>
 				<NavItem href="/auth" onClick={logout}>Logout</NavItem>
 			</div>
 		{/if}
@@ -96,7 +96,7 @@
 								<User class="mr-2 h-4 w-4" />
 								<span>Profile</span>
 							</DropdownMenu.Item> -->
-					<DropdownMenu.Item>
+					<DropdownMenu.Item href="/settings">
 						<Settings class="mr-2 h-4 w-4" />
 						<span>Settings</span>
 					</DropdownMenu.Item>
