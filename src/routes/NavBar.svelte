@@ -48,25 +48,25 @@
 	};
 </script>
 
-<div class="hidden h-screen w-1/6 flex-col items-center justify-between border-r border-border p-8 md:flex">
-	<div class="flex flex-col gap-2">
+<div class="hidden h-screen w-3/12 flex-col items-center justify-between border-r border-border p-6 md:flex">
+	<div class="flex w-full flex-col gap-2">
 		<Logo />
-		<Separator class="hidden md:flex" />
+		<Separator />
 		{#if session?.user}
-			<div class="hidden md:flex md:flex-col md:gap-2">
-				<NavItem href="/habits" variant="header">Habits</NavItem>
+			<NavItem href="/habits" variant="header">Habits</NavItem>
+			<div class="flex flex-col gap-1">
 				{#each data.habits as habit}
 					<NavItem href="/habits/{habit.id}">{habit.name}</NavItem>
 				{/each}
 			</div>
-			<div class="hidden md:flex md:flex-col md:gap-2">
-				<NavItem variant="header">My Account</NavItem>
+			<NavItem variant="header">My Account</NavItem>
+			<div class="flex flex-col gap-2">
 				<NavItem href="/settings">Settings</NavItem>
 				<NavItem href="/auth" onClick={logout}>Logout</NavItem>
 			</div>
 		{/if}
 	</div>
-	<Button on:click={toggleMode} variant="outline" class="hidden md:flex">
+	<Button on:click={toggleMode} variant="outline">
 		<ThemeToggle />
 	</Button>
 </div>
@@ -92,10 +92,6 @@
 				<DropdownMenu.Group>
 					<DropdownMenu.Label>My Account</DropdownMenu.Label>
 					<DropdownMenu.Separator />
-					<!-- <DropdownMenu.Item>
-								<User class="mr-2 h-4 w-4" />
-								<span>Profile</span>
-							</DropdownMenu.Item> -->
 					<DropdownMenu.Item href="/settings">
 						<Settings class="mr-2 h-4 w-4" />
 						<span>Settings</span>
