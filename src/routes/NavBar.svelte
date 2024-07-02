@@ -59,9 +59,8 @@
 					<NavItem href="/habits/{habit.id}">{habit.name}</NavItem>
 				{/each}
 			</div>
-			<NavItem variant="header">My Account</NavItem>
+			<NavItem href="/account" variant="header">Account</NavItem>
 			<div class="flex flex-col gap-2">
-				<NavItem href="/settings">Settings</NavItem>
 				<NavItem href="/auth" onClick={logout}>Logout</NavItem>
 			</div>
 		{/if}
@@ -90,12 +89,8 @@
 				</DropdownMenu.Group>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Group>
-					<DropdownMenu.Label>My Account</DropdownMenu.Label>
+					<DropdownMenu.Label>Account</DropdownMenu.Label>
 					<DropdownMenu.Separator />
-					<DropdownMenu.Item href="/settings">
-						<Settings class="mr-2 h-4 w-4" />
-						<span>Settings</span>
-					</DropdownMenu.Item>
 					<DropdownMenu.Item href="/auth" on:click={logout}>
 						<LogOut class="mr-2 h-4 w-4" />
 						<span>Log out</span>

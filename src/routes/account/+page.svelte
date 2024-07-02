@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex flex-col gap-4">
-	<h1 class="text-xl">Settings</h1>
+	<h1 class="text-xl">My Account</h1>
 
 	<div>
 		<Button variant="destructive" disabled>Delete Account</Button>
