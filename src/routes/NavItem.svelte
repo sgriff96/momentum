@@ -7,7 +7,7 @@
 
 	$: isActive = $page.url.pathname === href;
 
-	const headerClasses = 'text-lg font-medium text-foreground pl-2';
+	const headerClasses = 'text-lg font-medium text-primary-foreground pl-2';
 </script>
 
 <a
