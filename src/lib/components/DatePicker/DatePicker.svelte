@@ -6,7 +6,6 @@
 	import Button from '../ui/button/button.svelte';
 	import { getWeekDates } from './helpers';
 	import { fly } from 'svelte/transition';
-
 	// TODO: refactor all of this to work better with smaller screen sizes, maybe can use more css
 
 	const dispatch = createEventDispatcher();
@@ -69,6 +68,7 @@
 					<Button
 						variant={allDates.get(d)?.completed === true ? 'default' : 'outline'}
 						class="h-12 w-24"
+						disabled={new Date(d) > new Date()}
 						on:click={() => onValueChange(d)}>
 						<div>
 							<div>
