@@ -7,9 +7,11 @@ The primary motivation behind this application is learning SvelteKit and Svelte.
 ## Developing
 
 ```bash
+cd ui
 npm install
 
 # start dev server
+cd ui
 npm run dev
 ```
 
